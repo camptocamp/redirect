@@ -4,7 +4,6 @@ import os
 import c2cwsgiutils.db
 import c2cwsgiutils.health_check
 import yaml
-from numpy import ALLOW_THREADS
 from pyramid.config import Configurator
 
 LOG = logging.getLogger(__name__)
@@ -24,7 +23,8 @@ def main(global_config, **settings):
         c2cwsgiutils.health_check.HealthCheck(config)
 
     with open(
-        param_name=os.environ.get("REDIRECT_HOSTS", "/etc/redirect/hosts.yaml")
+        param_name=os.environ.get("REDIRECT_HOSTS", "/etc/redirect/hosts.yaml"),
+        encoding="utf-8",
     ) as config_file:
         config = yaml.load(config_file, Loader=yaml.SafeLoader)
 
@@ -39,7 +39,7 @@ def main(global_config, **settings):
             for elem in config.values():
                 fill_allowed_hosts(elem)
         else:
-            LOG.warning(f"Unknown type {type(config)} ({config})")
+            LOG.warning("Unknown type %s (%s)", type=type(config), config=config)
 
     fill_allowed_hosts(config)
 
