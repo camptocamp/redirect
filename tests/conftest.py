@@ -6,11 +6,11 @@ import alembic.config
 import pytest
 import transaction
 import webtest
-from redirect import main, models
-from redirect.models.meta import Base
 from pyramid.paster import get_appsettings
 from pyramid.scripting import prepare
 from pyramid.testing import DummyRequest, testConfig
+
+from redirect import main
 
 
 def pytest_addoption(parser):
@@ -27,6 +27,7 @@ def ini_file(request):
 def app_settings(ini_file):
     return get_appsettings(ini_file)
 
+
 @pytest.fixture(scope="session")
 def app(app_settings, dbengine):
     return main({}, dbengine=dbengine, **app_settings)
@@ -41,6 +42,7 @@ def tm():
     yield tm
 
     tm.abort()
+
 
 @pytest.fixture
 def testapp(app, tm):

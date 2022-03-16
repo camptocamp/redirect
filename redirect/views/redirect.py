@@ -1,11 +1,11 @@
 import logging
 import os
 from typing import Any
+from urllib.parse import urlparse
 
 import pyramid.request
 from cornice import Service
 from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
-from urllib.parse import urlparse
 
 from redirect import ALLOWED_HOSTS
 

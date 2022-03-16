@@ -6,16 +6,14 @@ LABEL maintainer Camptocamp "info@camptocamp.com"
 # Print commands and their arguments as they are executed.
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
-# SETUPTOOLS_USE_DISTUTILS: Workaround for setuptools >= 60.0.0
 ENV DEBIAN_FRONTEND=noninteractive \
-    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
-    SETUPTOOLS_USE_DISTUTILS=stdlib
+    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 # hadolint ignore=SC1091
 RUN apt-get update && \
     apt-get install --assume-yes --no-install-recommends \
-      python3-pip python3-dev python3-wheel python3-pkgconfig \
-      libpq-dev binutils gcc && \
+        python3-pip python3-wheel \
+        gcc libpq-dev python3-dev && \
     apt-get clean && \
     rm --recursive --force /var/lib/apt/lists/*
 
@@ -25,13 +23,10 @@ RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --requirem
 
 COPY Pipfile Pipfile.lock /tmp/
 
-RUN cd /tmp && PIP_NO_BINARY=fiona,rasterio,shapely PROJ_DIR=/usr/local/ pipenv sync --system --clear && \
+RUN cd /tmp && pipenv sync --system --clear && \
     rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/* && \
-    strip /usr/local/lib/python3.*/dist-packages/*/*.so && \
-    python3 -m compileall -q /usr/local/lib/python3.* -x '/(ptvsd|pipenv|.*pydev.*|networkx)/'
-
-# hadolint ignore=DL3059
-RUN apt-get remove --autoremove --assume-yes gcc
+    python3 -m compileall -q /usr/local/lib/python3.* -x '/(pipenv)/' && \
+    apt-get remove --autoremove --assume-yes gcc
 
 FROM base AS lint
 
@@ -41,20 +36,15 @@ RUN cd /tmp && pipenv sync --system --clear --dev && \
 WORKDIR /app
 COPY . ./
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
-    python3 -m compileall -q /app/custom && \
-    prospector --output=pylint -X . && \
-    touch /tmp/lint.ok
+    prospector --output=pylint -X .
 
 
 FROM base AS runtime
 
-# Force to urn the lint with BUILD KIT
-COPY --from=lint /tmp/lint.ok /tmp/
-
 WORKDIR /app
 COPY . ./
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
-    python3 -m compileall -q /app/custom
+    python3 -m compileall -q /app/redirect
 
 CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]
 
@@ -66,16 +56,9 @@ RUN c2cwsgiutils-genversion ${GIT_HASH}
 # Default values for the environment variables
 ENV \
     DEVELOPMENT=0 \
-    SQLALCHEMY_POOL_RECYCLE=30 \
-    SQLALCHEMY_POOL_SIZE=5 \
-    SQLALCHEMY_MAX_OVERFLOW=25 \
-    SQLALCHEMY_SLAVE_POOL_RECYCLE=30 \
-    SQLALCHEMY_SLAVE_POOL_SIZE=5 \
-    SQLALCHEMY_SLAVE_MAX_OVERFLOW=25\
     LOG_TYPE=console \
     OTHER_LOG_LEVEL=WARNING \
     GUNICORN_LOG_LEVEL=WARNING \
     GUNICORN_ACCESS_LOG_LEVEL=INFO \
-    SQL_LOG_LEVEL=WARNING \
     C2CWSGIUTILS_LOG_LEVEL=WARNING \
     LOG_LEVEL=INFO
