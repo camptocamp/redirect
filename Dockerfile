@@ -28,15 +28,14 @@ RUN cd /tmp && pipenv sync --system --clear && \
     python3 -m compileall -q /usr/local/lib/python3.* -x '/(pipenv)/' && \
     apt-get remove --autoremove --assume-yes gcc
 
-FROM base AS lint
+FROM base AS dev
 
 RUN cd /tmp && pipenv sync --system --clear --dev && \
     rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/*
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
-    prospector --output=pylint -X .
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=.
 
 
 FROM base AS runtime
@@ -61,4 +60,5 @@ ENV \
     GUNICORN_LOG_LEVEL=WARNING \
     GUNICORN_ACCESS_LOG_LEVEL=INFO \
     C2CWSGIUTILS_LOG_LEVEL=WARNING \
+    VISIBLE_ENTRY_POINT=/ \
     LOG_LEVEL=INFO
