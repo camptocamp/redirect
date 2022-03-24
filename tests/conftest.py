@@ -1,11 +1,8 @@
 import os
 
-import alembic
-import alembic.command
-import alembic.config
 import pytest
 import transaction
-import webtest
+#import webtest
 from pyramid.paster import get_appsettings
 from pyramid.scripting import prepare
 from pyramid.testing import DummyRequest, testConfig
@@ -44,18 +41,18 @@ def tm():
     tm.abort()
 
 
-@pytest.fixture
-def testapp(app, tm):
-    testapp = webtest.TestApp(
-        app,
-        extra_environ={
-            "HTTP_HOST": "example.com",
-            "tm.active": True,
-            "tm.manager": tm,
-        },
-    )
-
-    return testapp
+#@pytest.fixture
+#def testapp(app, tm):
+#    testapp = webtest.TestApp(
+#        app,
+#        extra_environ={
+#            "HTTP_HOST": "example.com",
+#            "tm.active": True,
+#            "tm.manager": tm,
+#        },
+#    )
+#
+#    return testapp
 
 
 @pytest.fixture

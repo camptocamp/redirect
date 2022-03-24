@@ -1,6 +1,3 @@
-from . import models
-
-
 def setup(env):
     request = env["request"]
 
@@ -10,4 +7,3 @@ def setup(env):
     # inject some vars into the shell builtins
     env["tm"] = request.tm
     env["dbsession"] = request.dbsession
-    env["models"] = models

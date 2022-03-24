@@ -24,5 +24,5 @@ setup(
             "main = redirect:main",
         ],
     },
-    package_data={"tilecloud_chain": ["py.typed"]},
+    package_data={"redirect": ["py.typed"]},
 )

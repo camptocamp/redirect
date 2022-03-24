@@ -1,0 +1,16 @@
+version: '3'
+services:
+  redirect:
+    image: camptocamp/redirect
+    ports:
+      - '8094:8080'
+    volumes:
+      - ./tests/hosts.yaml:/etc/redirect/hosts.yaml
+  tests:
+    image: camptocamp/redirect-dev
+    volumes:
+      - .:/app
+    command:
+      - tail
+      - -f
+      - /dev/null

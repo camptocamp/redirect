@@ -6,12 +6,14 @@ name = "pypi"
 [packages]
 gunicorn = "==20.1.0"
 pyramid = "==2.0"
-c2cwsgiutils = {extras = ["standard"], version = "==5.0.0"}
+c2cwsgiutils = {extras = ["standard", "broadcast"], version = "==5.0.0"}
 setuptools = "==59.8.0"
+pyramid-mako = "==1.1.0"
 
 [dev-packages]
 prospector = {version = "==1.7.7", extras = ["with_bandit"]}
 flake8 = "==4.0.1"
+pytest = "==7.1.1"
 
 [requires]
 python_version = "3.8"
