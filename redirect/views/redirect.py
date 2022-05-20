@@ -26,6 +26,7 @@ def redirect_get(request: pyramid.request.Request) -> Any:
 
     parsed_url = urllib.parse.urlparse(request.GET[param_name])
     if parsed_url.hostname not in ALLOWED_HOSTS:
+        LOG.error("Host '%s' is not in: %s", parsed_url.hostname, ", ".join(ALLOWED_HOSTS))
         raise HTTPBadRequest(f"Host '{parsed_url.hostname}' is not allowed")
 
     query = dict(request.GET)
