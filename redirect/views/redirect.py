@@ -19,7 +19,10 @@ redirect_service = Service(name="redirect", description="The redirect service", 
 @redirect_service.get()
 def redirect_get(request: pyramid.request.Request) -> Any:
     if param_name not in request.GET:
-        raise HTTPBadRequest(f"Missing '{param_name}' parameter")
+        message = [f"Missing '{param_name}' parameter", ""]
+        for key, value in request.GET.items():
+            message.append(f"{key}: {value}")
+        raise HTTPBadRequest("<br>\n".join(message))
 
     parsed_url = urllib.parse.urlparse(request.GET[param_name])
     if parsed_url.hostname not in ALLOWED_HOSTS:
