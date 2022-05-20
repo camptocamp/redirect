@@ -31,6 +31,27 @@ def test_wrong():
     assert response.status_code == 400, response.text
 
 
+def test_error():
+    response = requests.get("http://redirect:8080/", params={"error": "An error."}, allow_redirects=False)
+    assert response.status_code == 400, response.text
+    assert response.text == "\n".join(
+        (
+            "<html>",
+            " <head>",
+            "  <title>400 Bad Request</title>",
+            " </head>",
+            " <body>",
+            "  <h1>400 Bad Request</h1>",
+            "  The server could not comply with the request since it is either malformed or otherwise incorrect.<br/><br/>",
+            "Missing &#x27;came_from&#x27; parameter<br/>",
+            "<br/>",
+            "error: An error.",
+            " </body>",
+            "</html>",
+        )
+    )
+
+
 def test_querystring():
     response = requests.get(
         "http://redirect:8080/",
