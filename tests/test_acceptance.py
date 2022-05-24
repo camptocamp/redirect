@@ -17,6 +17,26 @@ def test_test2():
     assert response.headers["Location"] == "http://example2.com/toto"
 
 
+def test_params():
+    response = requests.get(
+        "http://redirect:8080/",
+        params={"came_from": "http://example2.com/toto?p1=1", "p2": "2"},
+        allow_redirects=False,
+    )
+    assert response.status_code == 302, response.text
+    assert response.headers["Location"] == "http://example2.com/toto?p1=1&p2=2"
+
+
+def test_params_same():
+    response = requests.get(
+        "http://redirect:8080/",
+        params={"came_from": "http://example2.com/toto?p1=1", "p1": "2"},
+        allow_redirects=False,
+    )
+    assert response.status_code == 302, response.text
+    assert response.headers["Location"] == "http://example2.com/toto?p1=2"
+
+
 def test_test_other():
     response = requests.get(
         "http://redirect:8080/", params={"came_from": "http://example3.com/toto"}, allow_redirects=False

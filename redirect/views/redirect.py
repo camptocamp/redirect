@@ -46,5 +46,18 @@ def redirect_get(request: pyramid.request.Request) -> Any:
         raise HTTPBadRequest(f"Host '{parsed_url.hostname}' is not allowed")
 
     query = dict(request.GET)
+    url_split = urllib.parse.urlsplit(query[param_name])
+    new_query = dict(urllib.parse.parse_qsl(url_split.query))
     del query[param_name]
-    raise HTTPFound(urllib.parse.urljoin(request.GET[param_name], f"?{urllib.parse.urlencode(query)}"))
+    new_query.update(query)
+    raise HTTPFound(
+        urllib.parse.urlunsplit(
+            (
+                url_split.scheme,
+                url_split.netloc,
+                url_split.path,
+                urllib.parse.urlencode(new_query),
+                url_split.fragment,
+            )
+        )
+    )
