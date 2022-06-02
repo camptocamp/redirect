@@ -11,6 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # hadolint ignore=SC1091
 RUN apt-get update && \
+    apt-get upgrade --yes && \
     apt-get install --assume-yes --no-install-recommends \
         python3-pip python3-wheel \
         gcc libpq-dev python3-dev && \
