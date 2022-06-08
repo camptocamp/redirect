@@ -7,7 +7,7 @@ name = "pypi"
 gunicorn = "==20.1.0"
 pyramid = "==2.0"
 c2cwsgiutils = {extras = ["standard", "broadcast"], version = "==5.0.0"}
-setuptools = "==59.8.0"
+setuptools = "==62.3.3"
 pyramid-mako = "==1.1.0"
 
 [dev-packages]
