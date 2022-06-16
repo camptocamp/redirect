@@ -10,41 +10,40 @@ ENV DEBIAN_FRONTEND=noninteractive \
     SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 # hadolint ignore=SC1091
-RUN apt-get update && \
-    apt-get upgrade --yes && \
-    apt-get install --assume-yes --no-install-recommends \
+RUN apt-get update \
+    && apt-get upgrade --yes \
+    && apt-get install --assume-yes --no-install-recommends \
         python3-pip python3-wheel \
-        gcc libpq-dev python3-dev && \
-    apt-get clean && \
-    rm --recursive --force /var/lib/apt/lists/*
+        gcc libpq-dev python3-dev \
+    && apt-get clean \
+    && rm --recursive --force /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt && \
-    rm --recursive --force /tmp/*
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt \
+    && rm --recursive --force /tmp/*
 
 COPY Pipfile Pipfile.lock /tmp/
 
-RUN cd /tmp && pipenv sync --system --clear && \
-    rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/* && \
-    python3 -m compileall -q /usr/local/lib/python3.* -x '/(pipenv)/' && \
-    apt-get remove --autoremove --assume-yes gcc
+RUN cd /tmp && pipenv sync --system --clear \
+    && rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/* \
+    && python3 -m compileall -q /usr/local/lib/python3.* -x '/(pipenv)/' \
+    && apt-get remove --autoremove --assume-yes gcc
 
 FROM base AS dev
 
-RUN cd /tmp && pipenv sync --system --clear --dev && \
-    rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/*
+RUN cd /tmp && pipenv sync --system --clear --dev \
+    && rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/*
 
 WORKDIR /app
 COPY . ./
 RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=.
 
-
 FROM base AS runtime
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. && \
-    python3 -m compileall -q /app/redirect
+RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. \
+    && python3 -m compileall -q /app/redirect
 
 CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]
 
