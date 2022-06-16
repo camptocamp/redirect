@@ -3,7 +3,7 @@
 !/developemnt.ini
 !/production.ini
 !/gunicorn.conf.py
-!/setup.py
 !/MANIFEST.in
-!/Pipfile*
 !/requirements.txt
+!/pyproject.toml
+!/poetry.lock

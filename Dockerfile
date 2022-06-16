@@ -1,48 +1,68 @@
-FROM osgeo/gdal:ubuntu-small-3.4.1 AS base
+FROM osgeo/gdal:ubuntu-small-3.4.1 AS base-all
 LABEL maintainer Camptocamp "info@camptocamp.com"
+SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
+
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    apt-get update \
+    && apt-get upgrade --assume-yes \
+    && apt-get install --assume-yes --no-install-recommends python3-pip \
+    && python3 -m pip install --disable-pip-version-check --upgrade pip
+
+# Used to convert the locked packages by poetry to pip requirements format
+# We don't directly use `poetry install` because it force to use a virtual environment.
+FROM base-all as poetry
+
+# Install Poetry
+WORKDIR /tmp
+COPY requirements.txt ./
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --requirement=requirements.txt
+
+# Do the conversion
+COPY poetry.lock pyproject.toml ./
+RUN poetry export --output=requirements.txt \
+    && poetry export --dev --output=requirements-dev.txt
+
+# Base, the biggest thing is to install the Python packages
+FROM base-all as base
 
 # Fail on error on pipe, see: https://github.com/hadolint/hadolint/wiki/DL4006.
 # Treat unset variables as an error when substituting.
 # Print commands and their arguments as they are executed.
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
-# hadolint ignore=SC1091
-RUN apt-get update \
+RUN --mount=type=cache,target=/var/lib/apt/lists \
+    --mount=type=cache,target=/var/cache,sharing=locked \
+    apt-get update \
     && apt-get upgrade --yes \
-    && apt-get install --assume-yes --no-install-recommends \
-        python3-pip python3-wheel \
-        gcc libpq-dev python3-dev \
-    && apt-get clean \
-    && rm --recursive --force /var/lib/apt/lists/*
+    && apt-get install --assume-yes --no-install-recommends python3-pip gcc libpq-dev python3-dev
 
-COPY requirements.txt /tmp/
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --requirement=/tmp/requirements.txt \
-    && rm --recursive --force /tmp/*
-
-COPY Pipfile Pipfile.lock /tmp/
-
-RUN cd /tmp && pipenv sync --system --clear \
-    && rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/* \
-    && python3 -m compileall -q /usr/local/lib/python3.* -x '/(pipenv)/' \
+RUN --mount=type=cache,target=/root/.cache \
+    --mount=type=bind,from=poetry,source=/tmp,target=/poetry \
+    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/poetry/requirements.txt \
+    && python3 -m compileall -q /usr/local/lib/python3.* \
     && apt-get remove --autoremove --assume-yes gcc
 
 FROM base AS dev
 
-RUN cd /tmp && pipenv sync --system --clear --dev \
-    && rm --recursive --force /usr/local/lib/python3.*/dist-packages/tests/ /root/.cache/*
+RUN --mount=type=cache,target=/root/.cache \
+    --mount=type=bind,from=poetry,source=/tmp,target=/poetry \
+    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/poetry/requirements-dev.txt
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=.
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --no-deps --editable=.
 
 FROM base AS runtime
 
 WORKDIR /app
 COPY . ./
-RUN python3 -m pip install --disable-pip-version-check --no-cache-dir --editable=. \
+RUN --mount=type=cache,target=/root/.cache \
+    python3 -m pip install --disable-pip-version-check --no-deps --editable=. \
     && python3 -m compileall -q /app/redirect
 
 CMD [ "/usr/local/bin/gunicorn", "--paste=production.ini" ]

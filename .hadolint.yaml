@@ -2,3 +2,4 @@
 ignored:
   - DL3003 # Use WORKDIR to switch to a directory
   - DL3008 # Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
+  - DL3042 # Avoid use of cache directory with pip. Use `pip install --no-cache-dir <package>`
