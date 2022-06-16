@@ -13,7 +13,7 @@ pyramid-mako = "==1.1.0"
 [dev-packages]
 prospector = {version = "==1.7.7", extras = ["with_bandit"]}
 flake8 = "==4.0.1"
-pytest = "==7.1.1"
+pytest = "==7.1.2"
 
 [requires]
 python_version = "3.8"
