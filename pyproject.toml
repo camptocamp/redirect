@@ -17,7 +17,7 @@ pyramid-mako = "1.1.0"
 
 [tool.poetry.dev-dependencies]
 prospector = {version = "1.7.7", extras = ["with_bandit", "with_mypy"]}
-pylint = "2.14.3"
+pylint = "2.14.4"
 mypy = "0.961"
 flake8 = "4.0.1"
 pytest = "7.1.2"
