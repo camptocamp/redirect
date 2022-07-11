@@ -87,7 +87,7 @@ python-versions = "*"
 
 [[package]]
 name = "c2cwsgiutils"
-version = "5.0.0"
+version = "5.1.0"
 description = "Common utilities for Camptocamp WSGI applications"
 category = "main"
 optional = false
@@ -112,8 +112,8 @@ redis = {version = "*", optional = true, markers = "extra == \"broadcast\""}
 requests = {version = "*", optional = true, markers = "extra == \"standard\""}
 requests-oauthlib = {version = "*", optional = true, markers = "extra == \"standard\""}
 sentry-sdk = {version = "*", optional = true, markers = "extra == \"standard\""}
-SQLAlchemy = {version = "*", optional = true, markers = "extra == \"standard\""}
-SQLAlchemy-Utils = {version = "*", optional = true, markers = "extra == \"standard\""}
+sqlalchemy = {version = "*", optional = true, markers = "extra == \"standard\""}
+sqlalchemy-utils = {version = "*", optional = true, markers = "extra == \"standard\""}
 ujson = {version = "*", optional = true, markers = "extra == \"standard\""}
 waitress = {version = "*", optional = true, markers = "extra == \"standard\""}
 "zope.interface" = {version = "*", optional = true, markers = "extra == \"standard\""}
@@ -121,8 +121,7 @@ waitress = {version = "*", optional = true, markers = "extra == \"standard\""}
 
 [package.extras]
 broadcast = ["redis"]
-profiler = ["linesman"]
-standard = ["alembic", "boltons", "cornice", "gunicorn", "lxml", "netifaces", "objgraph", "pipfile", "psycopg2", "pyramid", "pyramid-tm", "sentry-sdk", "requests", "ujson", "cee-syslog-handler", "sqlalchemy", "sqlalchemy-utils", "zope.interface", "zope.sqlalchemy", "pyyaml", "pyjwt", "requests-oauthlib", "setuptools", "waitress"]
+standard = ["alembic", "boltons", "cee-syslog-handler", "cornice", "gunicorn", "lxml", "netifaces", "objgraph", "pipfile", "psycopg2", "pyjwt", "pyramid", "pyramid-tm", "pyyaml", "requests", "requests-oauthlib", "sentry-sdk", "sqlalchemy", "sqlalchemy-utils", "ujson", "waitress", "zope.interface", "zope.sqlalchemy"]
 
 [[package]]
 name = "cee-syslog-handler"
@@ -1215,7 +1214,7 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "0055f48db34173adf4ae9aeb804452f593993cf725385f0f3f2b7d3706477ee5"
+content-hash = "0353c746eb3bbb87ee3173238c192509502269e1fadc33c3d8eda360988f8373"
 
 [metadata.files]
 alembic = [
@@ -1247,7 +1246,7 @@ boltons = [
     {file = "boltons-21.0.0.tar.gz", hash = "sha256:65e70a79a731a7fe6e98592ecfb5ccf2115873d01dbc576079874629e5c90f13"},
 ]
 c2cwsgiutils = [
-    {file = "c2cwsgiutils-5.0.0-py3-none-any.whl", hash = "sha256:ebaf0f110bb1c5fccc9034daeb13c51bd932eca6eb12e76af7c57ffa4ca9a9cf"},
+    {file = "c2cwsgiutils-5.1.0-py3-none-any.whl", hash = "sha256:e203358c25f1fa1affc3ab2d33318f4666d62e21aae6e4df3bc542369b98a216"},
 ]
 cee-syslog-handler = [
     {file = "cee_syslog_handler-0.6.0-py3-none-any.whl", hash = "sha256:13b60f5b4f9f04e2868316d88bf63d51b4b4b273ba7df12af6f21ee10e223ca3"},
@@ -1433,7 +1432,6 @@ lxml = [
     {file = "lxml-4.9.1-cp27-cp27m-win_amd64.whl", hash = "sha256:4cfbe42c686f33944e12f45a27d25a492cc0e43e1dc1da5d6a87cbcaf2e95627"},
     {file = "lxml-4.9.1-cp27-cp27mu-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:dad7b164905d3e534883281c050180afcf1e230c3d4a54e8038aa5cfcf312b84"},
     {file = "lxml-4.9.1-cp27-cp27mu-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:a614e4afed58c14254e67862456d212c4dcceebab2eaa44d627c2ca04bf86837"},
-    {file = "lxml-4.9.1-cp310-cp310-macosx_10_15_universal2.whl", hash = "sha256:49a866923e69bc7da45a0565636243707c22752fc38f6b9d5c8428a86121022c"},
     {file = "lxml-4.9.1-cp310-cp310-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_24_i686.whl", hash = "sha256:f9ced82717c7ec65a67667bb05865ffe38af0e835cdd78728f1209c8fffe0cad"},
     {file = "lxml-4.9.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl", hash = "sha256:d9fc0bf3ff86c17348dfc5d322f627d78273eba545db865c3cd14b3f19e57fa5"},
     {file = "lxml-4.9.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl", hash = "sha256:e5f66bdf0976ec667fc4594d2812a00b07ed14d1b44259d19a41ae3fff99f2b8"},
