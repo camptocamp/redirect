@@ -55,5 +55,5 @@ jobs:
           git push origin changelog-update -f
           gh pr create --base=master --fill --label=chore || true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GOPASS_CI_GITHUB_TOKEN }}
         if: steps.status.outputs.status != ''
