@@ -2,8 +2,6 @@ import os
 
 import pytest
 import transaction
-
-# import webtest
 from pyramid.paster import get_appsettings
 from pyramid.scripting import prepare
 from pyramid.testing import DummyRequest, testConfig
