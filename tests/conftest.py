@@ -2,7 +2,6 @@ import os
 
 import pytest
 import transaction
-#import webtest
 from pyramid.paster import get_appsettings
 from pyramid.scripting import prepare
 from pyramid.testing import DummyRequest, testConfig
@@ -41,8 +40,8 @@ def tm():
     tm.abort()
 
 
-#@pytest.fixture
-#def testapp(app, tm):
+# @pytest.fixture
+# def testapp(app, tm):
 #    testapp = webtest.TestApp(
 #        app,
 #        extra_environ={
