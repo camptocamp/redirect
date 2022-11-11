@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-small-3.4.1 AS base-all
+FROM ubuntu:22.04 AS base-all
 LABEL maintainer Camptocamp "info@camptocamp.com"
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
@@ -6,8 +6,7 @@ RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache,sharing=locked \
     apt-get update \
     && apt-get upgrade --assume-yes \
-    && apt-get install --assume-yes --no-install-recommends python3-pip \
-    && python3 -m pip install --disable-pip-version-check --upgrade pip
+    && apt-get install --assume-yes --no-install-recommends python3-pip
 
 # Used to convert the locked packages by poetry to pip requirements format
 # We don't directly use `poetry install` because it force to use a virtual environment.
@@ -36,15 +35,13 @@ ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 RUN --mount=type=cache,target=/var/lib/apt/lists \
     --mount=type=cache,target=/var/cache,sharing=locked \
-    apt-get update \
-    && apt-get upgrade --yes \
-    && apt-get install --assume-yes --no-install-recommends python3-pip gcc libpq-dev python3-dev
-
-RUN --mount=type=cache,target=/root/.cache \
+    --mount=type=cache,target=/root/.cache \
     --mount=type=bind,from=poetry,source=/tmp,target=/poetry \
-    python3 -m pip install --disable-pip-version-check --no-deps --requirement=/poetry/requirements.txt \
+    apt-get update \
+    && apt-get install --assume-yes --no-install-recommends python3-dev gcc libpq-dev \
+    && python3 -m pip install --disable-pip-version-check --no-deps --requirement=/poetry/requirements.txt \
     && python3 -m compileall -q /usr/local/lib/python3.* \
-    && apt-get remove --autoremove --assume-yes gcc
+    && apt-get remove --autoremove --assume-yes python3-dev gcc libpq-dev
 
 FROM base AS dev
 

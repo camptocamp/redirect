@@ -34,5 +34,12 @@
       separateMajorMinor: false,
       separateMinorPatch: false,
     },
+    /** Docker images versions */
+    {
+      matchDatasources: ['docker'],
+      matchPackageNames: ['ubuntu'],
+      versioning: 'ubuntu',
+      allowedVersions: '/^[0-9][02468]\\.04$/',
+    },
   ],
 }
