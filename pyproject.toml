@@ -16,7 +16,7 @@ c2cwsgiutils = { extras = ["standard", "broadcast"], version = "5.1.5" }
 pyramid-mako = "1.1.0"
 
 [tool.poetry.dev-dependencies]
-prospector = { version = "1.7.7", extras = ["with_bandit", "with_mypy"] }
+prospector = { version = "1.8.2", extras = ["with_bandit", "with_mypy"] }
 pytest = "7.2.0"
 
 [tool.poetry.plugins."paste.app_factory"]
