@@ -14,6 +14,7 @@ gunicorn = "20.1.0"
 pyramid = "2.0"
 c2cwsgiutils = { extras = ["standard", "broadcast"], version = "5.1.5" }
 pyramid-mako = "1.1.0"
+certifi = "2022.12.7"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.8.2", extras = ["with_bandit", "with_mypy"] }
