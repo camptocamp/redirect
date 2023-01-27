@@ -4,4 +4,4 @@
 
 | Version | Supported Until |
 | ------- | --------------- |
-| master  | Best effort     |
+| 1.0     | Best effort     |
