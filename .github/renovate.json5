@@ -12,6 +12,7 @@
     automerge: true,
     schedule: 'after 5pm on the first day of the month',
   },
+  baseBranches: ['master', '1.0'],
   packageRules: [
     /** Automerge the patch, the minor and the dev dependency */
     {
@@ -44,6 +45,12 @@
       matchPackageNames: ['ubuntu'],
       versioning: 'ubuntu',
       allowedVersions: '/^[0-9][02468]\\.04$/',
+    },
+    /** Accept only the patch on stabilization branches */
+    {
+      matchBaseBranches: ['/[1-9]\\..*/'],
+      matchUpdateTypes: ['major', 'minor', 'pin', 'digest', 'lockFileMaintenance', 'rollback', 'bump'],
+      enabled: false,
     },
   ],
 }
