@@ -127,11 +127,13 @@ lxml = {version = "*", optional = true, markers = "extra == \"standard\" or extr
 netifaces = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
 objgraph = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
 psycopg2 = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+pyjwt = {version = "*", optional = true, markers = "extra == \"oauth2\" or extra == \"all\""}
 pyramid = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
 pyramid-tm = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
 pyyaml = "*"
 redis = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"broadcast\" or extra == \"all\""}
 requests = "*"
+requests-oauthlib = {version = "*", optional = true, markers = "extra == \"oauth2\" or extra == \"all\""}
 sentry-sdk = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
 SQLAlchemy = {version = ">=1.4.0,<3.0.0", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
 SQLAlchemy-Utils = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
@@ -941,6 +943,23 @@ files = [
 ]
 
 [[package]]
+name = "oauthlib"
+version = "3.2.2"
+description = "A generic, spec-compliant, thorough implementation of the OAuth request-signing logic"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "oauthlib-3.2.2-py3-none-any.whl", hash = "sha256:8139f29aac13e25d502680e9e19963e83f16838d48a0d71c287fe40e7067fbca"},
+    {file = "oauthlib-3.2.2.tar.gz", hash = "sha256:9859c40929662bec5d64f34d01c99e093149682a3f38915dc0655d5a633dd918"},
+]
+
+[package.extras]
+rsa = ["cryptography (>=3.0.0)"]
+signals = ["blinker (>=1.4.0)"]
+signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
+
+[[package]]
 name = "objgraph"
 version = "3.5.0"
 description = "Draws Python object reference graphs with graphviz"
@@ -1210,6 +1229,24 @@ files = [
     {file = "pyflakes-2.5.0-py2.py3-none-any.whl", hash = "sha256:4579f67d887f804e67edb544428f264b7b24f435b263c4614f384135cea553d2"},
     {file = "pyflakes-2.5.0.tar.gz", hash = "sha256:491feb020dca48ccc562a8c0cbe8df07ee13078df59813b83959cbdada312ea3"},
 ]
+
+[[package]]
+name = "pyjwt"
+version = "2.6.0"
+description = "JSON Web Token implementation in Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "PyJWT-2.6.0-py3-none-any.whl", hash = "sha256:d83c3d892a77bbb74d3e1a2cfa90afaadb60945205d1095d9221f04466f64c14"},
+    {file = "PyJWT-2.6.0.tar.gz", hash = "sha256:69285c7e31fc44f68a1feb309e948e0df53259d579295e6cfe2b1792329f05fd"},
+]
+
+[package.extras]
+crypto = ["cryptography (>=3.4.0)"]
+dev = ["coverage[toml] (==5.0.4)", "cryptography (>=3.4.0)", "pre-commit", "pytest (>=6.0.0,<7.0.0)", "sphinx (>=4.5.0,<5.0.0)", "sphinx-rtd-theme", "zope.interface"]
+docs = ["sphinx (>=4.5.0,<5.0.0)", "sphinx-rtd-theme", "zope.interface"]
+tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
 
 [[package]]
 name = "pylint"
@@ -1499,6 +1536,25 @@ urllib3 = ">=1.21.1,<1.27"
 [package.extras]
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
+
+[[package]]
+name = "requests-oauthlib"
+version = "1.3.1"
+description = "OAuthlib authentication support for Requests."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "requests-oauthlib-1.3.1.tar.gz", hash = "sha256:75beac4a47881eeb94d5ea5d6ad31ef88856affe2332b9aafb52c6452ccf0d7a"},
+    {file = "requests_oauthlib-1.3.1-py2.py3-none-any.whl", hash = "sha256:2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5"},
+]
+
+[package.dependencies]
+oauthlib = ">=3.0.0"
+requests = ">=2.0.0"
+
+[package.extras]
+rsa = ["oauthlib[signedtoken] (>=3.0.0)"]
 
 [[package]]
 name = "requirements-detector"
@@ -2139,4 +2195,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "bad0c873d31c34b8d95afeb725ec85edb03f63d45cb45d620a364de9c1bf21cc"
+content-hash = "d47c20717c80607539eb71dfaec79aebddaecb63d2461b3fa2f2105dbef1947e"
