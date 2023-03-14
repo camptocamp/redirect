@@ -106,44 +106,47 @@ files = [
 
 [[package]]
 name = "c2cwsgiutils"
-version = "5.1.6"
+version = "5.2.2"
 description = "Common utilities for Camptocamp WSGI applications"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.8,<4.0"
 files = [
-    {file = "c2cwsgiutils-5.1.6-py3-none-any.whl", hash = "sha256:c4491eb70d536b2f24c346be64f6f2a077e062489086fb752b567d79307c2068"},
+    {file = "c2cwsgiutils-5.2.2-py3-none-any.whl", hash = "sha256:19c1c10cac135b822f732d3df3de3162cdc4636ba485f1aa8ad05564b973fa9b"},
+    {file = "c2cwsgiutils-5.2.2.tar.gz", hash = "sha256:9ca220f920e96c3405d7908b57e419b9b3033aaf2c254c3c55ebd0dead0c0fc0"},
 ]
 
 [package.dependencies]
-alembic = {version = "*", optional = true, markers = "extra == \"standard\""}
-boltons = {version = "*", optional = true, markers = "extra == \"standard\""}
-cee-syslog-handler = {version = "*", optional = true, markers = "extra == \"standard\""}
-cornice = {version = "*", optional = true, markers = "extra == \"standard\""}
-gunicorn = {version = "*", optional = true, markers = "extra == \"standard\""}
-lxml = {version = "*", optional = true, markers = "extra == \"standard\""}
-netifaces = {version = "*", optional = true, markers = "extra == \"standard\""}
-objgraph = {version = "*", optional = true, markers = "extra == \"standard\""}
-pipfile = {version = "*", optional = true, markers = "extra == \"standard\""}
-psycopg2 = {version = "*", optional = true, markers = "extra == \"standard\""}
-pyjwt = {version = "*", optional = true, markers = "extra == \"standard\""}
-pyramid = {version = "*", optional = true, markers = "extra == \"standard\""}
-pyramid-tm = {version = "*", optional = true, markers = "extra == \"standard\""}
-pyyaml = {version = "*", optional = true, markers = "extra == \"standard\""}
-redis = {version = "*", optional = true, markers = "extra == \"broadcast\""}
-requests = {version = "*", optional = true, markers = "extra == \"standard\""}
-requests-oauthlib = {version = "*", optional = true, markers = "extra == \"standard\""}
-sentry-sdk = {version = "*", optional = true, markers = "extra == \"standard\""}
-sqlalchemy = {version = "*", optional = true, markers = "extra == \"standard\""}
-sqlalchemy-utils = {version = "*", optional = true, markers = "extra == \"standard\""}
-ujson = {version = "*", optional = true, markers = "extra == \"standard\""}
-waitress = {version = "*", optional = true, markers = "extra == \"standard\""}
-"zope.interface" = {version = "*", optional = true, markers = "extra == \"standard\""}
-"zope.sqlalchemy" = {version = "*", optional = true, markers = "extra == \"standard\""}
+alembic = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+boltons = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+cee_syslog_handler = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+certifi = "*"
+cornice = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+gunicorn = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+lxml = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+netifaces = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+objgraph = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+psycopg2 = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+pyjwt = {version = "*", optional = true, markers = "extra == \"oauth2\" or extra == \"all\""}
+pyramid = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+pyramid-tm = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+pyyaml = "*"
+redis = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"broadcast\" or extra == \"all\""}
+requests = "*"
+requests-oauthlib = {version = "*", optional = true, markers = "extra == \"oauth2\" or extra == \"all\""}
+sentry-sdk = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+SQLAlchemy = {version = ">=1.4.0,<3.0.0", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+SQLAlchemy-Utils = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+ujson = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+"zope.interface" = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
+"zope.sqlalchemy" = {version = "*", optional = true, markers = "extra == \"standard\" or extra == \"all\""}
 
 [package.extras]
+all = ["SQLAlchemy (>=1.4.0,<3.0.0)", "SQLAlchemy-Utils", "alembic", "boltons", "cee_syslog_handler", "cornice", "gunicorn", "lxml", "netifaces", "objgraph", "psycopg2", "pyjwt", "pyramid", "pyramid-tm", "redis", "requests-oauthlib", "sentry-sdk", "ujson", "waitress", "zope.interface", "zope.sqlalchemy"]
 broadcast = ["redis"]
-standard = ["alembic", "boltons", "cee-syslog-handler", "cornice", "gunicorn", "lxml", "netifaces", "objgraph", "pipfile", "psycopg2", "pyjwt", "pyramid", "pyramid-tm", "pyyaml", "requests", "requests-oauthlib", "sentry-sdk", "sqlalchemy", "sqlalchemy-utils", "ujson", "waitress", "zope.interface", "zope.sqlalchemy"]
+dev = ["waitress"]
+oauth2 = ["pyjwt", "requests-oauthlib"]
+standard = ["SQLAlchemy (>=1.4.0,<3.0.0)", "SQLAlchemy-Utils", "alembic", "boltons", "cee_syslog_handler", "cornice", "gunicorn", "lxml", "netifaces", "objgraph", "psycopg2", "pyramid", "pyramid-tm", "redis", "sentry-sdk", "ujson", "zope.interface", "zope.sqlalchemy"]
 test-images = ["scikit-image"]
 
 [[package]]
@@ -1043,20 +1046,6 @@ files = [
 flake8-polyfill = ">=1.0.2,<2"
 
 [[package]]
-name = "pipfile"
-version = "0.0.2"
-description = ""
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pipfile-0.0.2.tar.gz", hash = "sha256:f7d9f15de8b660986557eb3cc5391aa1a16207ac41bc378d03f414762d36c984"},
-]
-
-[package.dependencies]
-toml = "*"
-
-[[package]]
 name = "plaster"
 version = "1.1.2"
 description = "A loader interface around multiple config file formats."
@@ -1137,14 +1126,14 @@ files = [
 
 [[package]]
 name = "prospector"
-version = "1.8.4"
+version = "1.9.0"
 description = "Prospector is a tool to analyse Python code by aggregating the result of other tools."
 category = "dev"
 optional = false
-python-versions = ">=3.7,<4.0"
+python-versions = ">=3.7.2,<4.0"
 files = [
-    {file = "prospector-1.8.4-py3-none-any.whl", hash = "sha256:4a9584544cf8d118574567a669b85456d036444597f0664185263e229055cdf6"},
-    {file = "prospector-1.8.4.tar.gz", hash = "sha256:60db5b6046a523248a1b32fb2daa8080d3f406da822ad95cff8cd9f153e04555"},
+    {file = "prospector-1.9.0-py3-none-any.whl", hash = "sha256:c24011019e48b54745dc0f5d3d25e9d6b19750129996c134253c2f1eed9d45ac"},
+    {file = "prospector-1.9.0.tar.gz", hash = "sha256:599f31516f857d785058773875e9358702ad653e65461e8cad44134d8ee17b1f"},
 ]
 
 [package.dependencies]
@@ -1154,7 +1143,7 @@ flake8 = "<6.0.0"
 GitPython = ">=3.1.27,<4.0.0"
 mccabe = ">=0.7.0,<0.8.0"
 mypy = {version = ">=0.600", optional = true, markers = "extra == \"with_mypy\" or extra == \"with_everything\""}
-packaging = "<22.0"
+packaging = "*"
 pep8-naming = ">=0.3.3,<=0.10.0"
 pycodestyle = ">=2.9.0"
 pydocstyle = ">=2.0.0"
@@ -1805,7 +1794,7 @@ pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 files = [
@@ -1991,22 +1980,6 @@ files = [
 [package.extras]
 docs = ["Sphinx", "repoze.sphinx.autointerface"]
 testing = ["coverage", "pytest", "pytest-cov"]
-
-[[package]]
-name = "waitress"
-version = "2.1.2"
-description = "Waitress WSGI server"
-category = "main"
-optional = false
-python-versions = ">=3.7.0"
-files = [
-    {file = "waitress-2.1.2-py3-none-any.whl", hash = "sha256:7500c9625927c8ec60f54377d590f67b30c8e70ef4b8894214ac6e4cad233d2a"},
-    {file = "waitress-2.1.2.tar.gz", hash = "sha256:780a4082c5fbc0fde6a2fcfe5e26e6efc1e8f425730863c04085769781f51eba"},
-]
-
-[package.extras]
-docs = ["Sphinx (>=1.8.1)", "docutils", "pylons-sphinx-themes (>=1.0.9)"]
-testing = ["coverage (>=5.0)", "pytest", "pytest-cover"]
 
 [[package]]
 name = "webob"
@@ -2222,4 +2195,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.11"
-content-hash = "4ad53157a1351a1241f2edc16e216b486a65971a1a17792c97a43ab985f37c80"
+content-hash = "d47c20717c80607539eb71dfaec79aebddaecb63d2461b3fa2f2105dbef1947e"
