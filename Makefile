@@ -25,4 +25,3 @@ run: build build-dev  ## Run the project to test it
 .PHONY: tests
 tests: run ## Run the acceptences tests
 	docker-compose exec -T tests pytest --verbosity=2
-
