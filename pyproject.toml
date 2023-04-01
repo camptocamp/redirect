@@ -20,7 +20,7 @@ redis = "4.4.4"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.8.4", extras = ["with_bandit", "with_mypy"] }
-pytest = "7.2.1"
+pytest = "7.2.2"
 
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
