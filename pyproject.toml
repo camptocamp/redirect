@@ -18,7 +18,7 @@ certifi = "2023.5.7"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.2", extras = ["with_bandit", "with_mypy"] }
-pytest = "7.3.2"
+pytest = "7.4.0"
 
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
