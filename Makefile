@@ -16,7 +16,7 @@ build-dev:  ## Build the image for development (Prospector and pytest)
 
 .PHONY: lint
 lint: build-dev  ## Lint the project with Prospector
-	docker run --rm --volume=$(shell pwd):/app camptocamp/redirect-dev prospector --output=pylint -X .
+	docker run --rm --volume=$(shell pwd)/redirect:/app/redirect camptocamp/redirect-dev prospector --output=pylint --die-on-tool-error .
 
 .PHONY: run
 run: build build-dev  ## Run the project to test it
