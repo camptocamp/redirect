@@ -31,7 +31,8 @@ def redirect_get(request: pyramid.request.Request) -> Any:
                     " </head>",
                     " <body>",
                     "  <h1>400 Bad Request</h1>",
-                    "  The server could not comply with the request since it is either malformed or otherwise incorrect.<br/><br/>",
+                    "  The server could not comply with the request since it is either "
+                    "malformed or otherwise incorrect.<br/><br/>",
                     "<br/>\n".join(message),
                     " </body>",
                     "</html>",

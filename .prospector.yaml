@@ -1,0 +1,17 @@
+inherits:
+  - duplicated
+
+strictness: veryhigh
+max-line-length: 110
+
+ignore-paths:
+  - gunicorn.conf.py
+
+#mypy:
+#  run: true
+
+bandit:
+  run: true
+
+pyorama:
+  run: true

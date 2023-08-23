@@ -30,7 +30,7 @@ def main(global_config, **settings):
 
 # Deeply find host to support any config from shared config operator.
 def get_allowed_hosts() -> Set[str]:
-    global _ALLOWED_HOSTS_TIMESTAMP
+    global _ALLOWED_HOSTS_TIMESTAMP  # pylint: disable=global-statement
 
     config_filename = os.environ.get("REDIRECT_HOSTS", "/etc/redirect/hosts.yaml")
     if _ALLOWED_HOSTS_TIMESTAMP < os.stat(config_filename).st_mtime:

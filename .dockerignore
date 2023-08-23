@@ -7,3 +7,4 @@
 !/requirements.txt
 !/pyproject.toml
 !/poetry.lock
+!/.prospector.yaml
