@@ -1,7 +1,6 @@
 import datetime
 import logging
 import os
-from typing import Set
 
 import c2cwsgiutils.db
 import c2cwsgiutils.health_check
@@ -29,7 +28,7 @@ def main(global_config, **settings):
 
 
 # Deeply find host to support any config from shared config operator.
-def get_allowed_hosts() -> Set[str]:
+def get_allowed_hosts() -> set[str]:
     global _ALLOWED_HOSTS_TIMESTAMP  # pylint: disable=global-statement
 
     config_filename = os.environ.get("REDIRECT_HOSTS", "/etc/redirect/hosts.yaml")

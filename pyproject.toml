@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 110
-target-version = ["py38"]
+target-version = ["py39"]
 
 [tool.poetry]
 name = "redirect"
@@ -9,7 +9,7 @@ description = "Not used"
 authors = []
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
+python = ">=3.9,<3.11"
 gunicorn = "21.2.0"
 pyramid = "2.0.1"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "5.2.2" }
