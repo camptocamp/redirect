@@ -11,8 +11,8 @@ authors = []
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 gunicorn = "21.2.0"
-pyramid = "2.0.1"
-c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "5.2.2" }
+pyramid = "2.0.2"
+c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "5.2.3" }
 pyramid-mako = "1.1.0"
 certifi = "2023.7.22"
 
