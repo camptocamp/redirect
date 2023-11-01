@@ -12,13 +12,13 @@ authors = []
 python = ">=3.9,<3.11"
 gunicorn = "21.2.0"
 pyramid = "2.0.2"
-c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.0.2" }
+c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.0.4" }
 pyramid-mako = "1.1.0"
 certifi = "2023.7.22"
 
 [tool.poetry.dev-dependencies]
-prospector = { version = "1.10.2", extras = ["with_bandit", "with_mypy"] }
-pytest = "7.4.2"
+prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
+pytest = "7.4.3"
 
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
