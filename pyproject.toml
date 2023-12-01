@@ -14,7 +14,7 @@ gunicorn = "21.2.0"
 pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.0.4" }
 pyramid-mako = "1.1.0"
-certifi = "2023.7.22"
+certifi = "2023.11.17"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
@@ -25,7 +25,7 @@ main = "redirect:main"
 
 
 [tool.poetry.group.dev.dependencies]
-prospector-profile-duplicated = "0.3.0"
+prospector-profile-duplicated = "0.4.0"
 
 
 [tool.poetry-dynamic-versioning]
