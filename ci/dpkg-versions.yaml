@@ -1,6 +1,6 @@
 camptocamp/redirect:latest:
   ubuntu_22_04/adduser: 3.118ubuntu5
-  ubuntu_22_04/apt: 2.4.10
+  ubuntu_22_04/apt: 2.4.11
   ubuntu_22_04/base-passwd: 3.5.52build1
   ubuntu_22_04/bash: 5.1-6ubuntu1
   ubuntu_22_04/util-linux: 2.37.2-4ubuntu3
@@ -33,9 +33,9 @@ camptocamp/redirect:latest:
   ubuntu_22_04/libffi: 3.4.2-4
   ubuntu_22_04/libgcrypt20: 1.9.4-3ubuntu3
   ubuntu_22_04/gmp: 2:6.2.1+dfsg-3ubuntu1
-  ubuntu_22_04/gnutls28: 3.7.3-4ubuntu1.2
+  ubuntu_22_04/gnutls28: 3.7.3-4ubuntu1.3
   ubuntu_22_04/libgpg-error: 1.43-3
-  ubuntu_22_04/krb5: 1.19.2-2ubuntu0.2
+  ubuntu_22_04/krb5: 1.19.2-2ubuntu0.3
   ubuntu_22_04/nettle: 3.7.3-1build2
   ubuntu_22_04/libidn2: 2.3.2-2build1
   ubuntu_22_04/node-jquery: 3.6.0+dfsg+~3.5.13-1
@@ -49,9 +49,9 @@ camptocamp/redirect:latest:
   ubuntu_22_04/pam: 1.4.0-11ubuntu2.3
   ubuntu_22_04/pcre2: 10.39-3ubuntu0.1
   ubuntu_22_04/pcre3: 2:8.39-13ubuntu0.22.04.1
-  ubuntu_22_04/procps: 2:3.3.17-6ubuntu2
+  ubuntu_22_04/procps: 2:3.3.17-6ubuntu2.1
   ubuntu_22_04/python3-defaults: 3.10.6-1~22.04
-  ubuntu_22_04/python3.10: 3.10.12-1~22.04.2
+  ubuntu_22_04/python3.10: 3.10.12-1~22.04.3
   ubuntu_22_04/readline: 8.1.2-1
   ubuntu_22_04/libseccomp: 2.5.3-2ubuntu2
   ubuntu_22_04/libselinux: 3.3-1build2
@@ -69,9 +69,9 @@ camptocamp/redirect:latest:
   ubuntu_22_04/lsb: 11.1.0ubuntu4
   ubuntu_22_04/mawk: 1.3.4.20200120-3
   ubuntu_22_04/media-types: 7.0.0
-  ubuntu_22_04/perl: 5.34.0-3ubuntu1.2
+  ubuntu_22_04/perl: 5.34.0-3ubuntu1.3
   ubuntu_22_04/python3-stdlib-extensions: 3.10.8-1~22.04
-  ubuntu_22_04/python-pip: 22.0.2+dfsg-1ubuntu0.3
+  ubuntu_22_04/python-pip: 22.0.2+dfsg-1ubuntu0.4
   ubuntu_22_04/setuptools: 59.6.0-1.2ubuntu0.22.04.1
   ubuntu_22_04/wheel: 0.37.1-2ubuntu0.22.04.1
   ubuntu_22_04/sed: 4.8-1ubuntu2
