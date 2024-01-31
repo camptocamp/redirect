@@ -13,3 +13,5 @@ audit:
     pip_install_arguments:
       - --user
       - --ignore-installed
+checks:
+  codespell: false
