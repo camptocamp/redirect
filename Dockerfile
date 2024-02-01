@@ -20,6 +20,7 @@ RUN --mount=type=cache,target=/root/.cache \
 
 # Do the conversion
 COPY poetry.lock pyproject.toml ./
+ENV POETRY_DYNAMIC_VERSIONING_BYPASS=0.0.0
 RUN poetry export --output=requirements.txt \
     && poetry export --with=dev --output=requirements-dev.txt
 
