@@ -53,8 +53,6 @@
       matchPackagePrefixes: ['poetry-'],
       groupName: 'Poetry',
       automerge: true,
-      separateMajorMinor: false,
-      separateMinorPatch: false,
     },
     /** Docker images versions */
     {
@@ -85,8 +83,6 @@
       matchFileNames: ['.github/**', '.pre-commit-config.yaml', 'ci/**'],
       groupName: 'CI dependencies',
       automerge: true,
-      separateMajorMinor: false,
-      separateMinorPatch: false,
     },
   ],
 }
