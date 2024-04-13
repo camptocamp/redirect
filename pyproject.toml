@@ -19,6 +19,7 @@ sentry-sdk = "1.14.0"
 redis = "4.4.4"
 requests = "2.31.0"
 urllib3 = "1.26.18"
+idna = "3.7"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.8.4", extras = ["with_bandit", "with_mypy"] }
