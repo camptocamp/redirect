@@ -23,7 +23,7 @@ description = "Not used"
 authors = []
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
+python = ">=3.10,<3.13"
 gunicorn = "23.0.0"
 pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.0.8" }
