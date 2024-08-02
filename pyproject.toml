@@ -15,7 +15,7 @@ pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast"], version = "5.1.7" }
 pyramid-mako = "1.1.0"
 certifi = "2023.7.22"
-sentry-sdk = "1.14.0"
+sentry-sdk = "2.8.0"
 redis = "4.4.4"
 requests = "2.32.3"
 urllib3 = "1.26.19"
