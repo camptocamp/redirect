@@ -20,8 +20,8 @@ lint: build-dev  ## Lint the project with Prospector
 
 .PHONY: run
 run: build build-dev  ## Run the project to test it
-	docker-compose up -d
+	docker compose up -d
 
 .PHONY: tests
 tests: run ## Run the acceptences tests
-	docker-compose exec -T tests pytest --verbosity=2
+	docker compose exec -T tests pytest --verbosity=2
