@@ -9,7 +9,7 @@ from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
 
 from redirect import get_allowed_hosts
 
-LOG = logging.getLogger(__name__)
+_LOG = logging.getLogger(__name__)
 
 param_name = os.environ.get("REDIRECT_PARAM", "came_from")
 
@@ -43,7 +43,7 @@ def redirect_get(request: pyramid.request.Request) -> Any:
     parsed_url = urllib.parse.urlparse(request.GET[param_name])
     allowed_hosts = get_allowed_hosts()
     if parsed_url.hostname not in allowed_hosts:
-        LOG.error("Host '%s' is not in: %s", parsed_url.hostname, ", ".join(allowed_hosts))
+        _LOG.error("Host '%s' is not in: %s", parsed_url.hostname, ", ".join(allowed_hosts))
         raise HTTPBadRequest(f"Host '{parsed_url.hostname}' is not allowed")
 
     query = dict(request.GET)
