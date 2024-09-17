@@ -67,8 +67,8 @@ camptocamp/redirect:latest:
   ubuntu_22_04/libpcre3: 2:8.39-13ubuntu0.22.04.1
   ubuntu_22_04/libprocps8: 2:3.3.17-6ubuntu2.1
   ubuntu_22_04/libpython3-stdlib: 3.10.6-1~22.04.1
-  ubuntu_22_04/libpython3.10-minimal: 3.10.12-1~22.04.5
-  ubuntu_22_04/libpython3.10-stdlib: 3.10.12-1~22.04.5
+  ubuntu_22_04/libpython3.10-minimal: 3.10.12-1~22.04.6
+  ubuntu_22_04/libpython3.10-stdlib: 3.10.12-1~22.04.6
   ubuntu_22_04/libreadline8: 8.1.2-1
   ubuntu_22_04/libseccomp2: 2.5.3-2ubuntu2
   ubuntu_22_04/libselinux1: 3.3-1build2
@@ -110,8 +110,8 @@ camptocamp/redirect:latest:
   ubuntu_22_04/python3-pkg-resources: 59.6.0-1.2ubuntu0.22.04.2
   ubuntu_22_04/python3-setuptools: 59.6.0-1.2ubuntu0.22.04.2
   ubuntu_22_04/python3-wheel: 0.37.1-2ubuntu0.22.04.1
-  ubuntu_22_04/python3.10: 3.10.12-1~22.04.5
-  ubuntu_22_04/python3.10-minimal: 3.10.12-1~22.04.5
+  ubuntu_22_04/python3.10: 3.10.12-1~22.04.6
+  ubuntu_22_04/python3.10-minimal: 3.10.12-1~22.04.6
   ubuntu_22_04/readline-common: 8.1.2-1
   ubuntu_22_04/sed: 4.8-1ubuntu2
   ubuntu_22_04/sensible-utils: 0.0.17
