@@ -17,7 +17,7 @@ pyramid-mako = "1.1.0"
 certifi = "2024.8.30"
 
 [tool.poetry.dev-dependencies]
-prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
+prospector = { version = "1.11.0", extras = ["with_bandit", "with_mypy"] }
 pytest = "8.3.3"
 
 [tool.poetry.plugins."paste.app_factory"]
