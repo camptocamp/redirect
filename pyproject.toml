@@ -1,6 +1,20 @@
 [tool.black]
 line-length = 110
-target-version = ["py39"]
+target-version = ["py312"]
+
+[tool.isort]
+line_length = 110
+profile = "black"
+
+[tool.mypy]
+python_version = "3.12"
+pretty = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+strict_optional = true
+strict = true
 
 [tool.poetry]
 name = "redirect"
@@ -9,7 +23,7 @@ description = "Not used"
 authors = []
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
+python = ">=3.10,<3.13"
 gunicorn = "23.0.0"
 pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.0.8" }
