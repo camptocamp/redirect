@@ -7,9 +7,3 @@ publish:
     dispatch: {}
     images:
       - name: camptocamp/redirect
-
-audit:
-  snyk:
-    pip_install_arguments:
-      - --user
-      - --ignore-installed
