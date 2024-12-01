@@ -12,7 +12,7 @@ authors = []
 python = ">=3.8,<3.11"
 gunicorn = "22.0.0"
 pyramid = "2.0.2"
-c2cwsgiutils = { extras = ["standard", "broadcast"], version = "5.1.7" }
+c2cwsgiutils = { extras = ["standard", "broadcast"], version = "5.1.9" }
 pyramid-mako = "1.1.0"
 certifi = "2024.7.4"
 sentry-sdk = "2.8.0"
