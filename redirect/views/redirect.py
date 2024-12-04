@@ -3,6 +3,7 @@ import os
 import urllib
 from typing import Any
 
+import html_sanitizer
 import pyramid.request
 from cornice import Service
 from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
@@ -16,12 +17,25 @@ param_name = os.environ.get("REDIRECT_PARAM", "came_from")
 redirect_service = Service(name="redirect", description="The redirect service", path="/")
 
 
+sanitizer = html_sanitizer.Sanitizer(
+    {
+        "tags": {
+            "unexisting",
+        },
+        "attributes": {},
+        "empty": set(),
+        "separate": set(),
+        "keep_typographic_whitespace": True,
+    }
+)
+
+
 @redirect_service.get()
 def redirect_get(request: pyramid.request.Request) -> Any:
     if param_name not in request.GET:
         message = [f"Missing &#x27;{param_name}&#x27; parameter", ""]
         for key, value in request.GET.items():
-            message.append(f"{key}: {value}")
+            message.append(f"{sanitizer.sanitize(key)}: {sanitizer.sanitize(value)}")
         raise HTTPBadRequest(
             body="\n".join(
                 (
