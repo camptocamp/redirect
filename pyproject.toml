@@ -20,6 +20,7 @@ redis = "4.4.4"
 requests = "2.32.3"
 urllib3 = "1.26.20"
 idna = "3.7"
+html-sanitizer = "2.4.4"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.8.4", extras = ["with_bandit", "with_mypy"] }
