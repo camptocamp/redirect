@@ -148,13 +148,13 @@ files = [
 
 [[package]]
 name = "certifi"
-version = "2024.8.30"
+version = "2024.12.14"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "certifi-2024.8.30-py3-none-any.whl", hash = "sha256:922820b53db7a7257ffbda3f597266d435245903d80737e34f8a45ff3e3230d8"},
-    {file = "certifi-2024.8.30.tar.gz", hash = "sha256:bec941d2aa8195e248a60b31ff9f0558284cf01a52591ceda73ea9afffd69fd9"},
+    {file = "certifi-2024.12.14-py3-none-any.whl", hash = "sha256:1275f7a45be9464efc1173084eaa30f866fe2e47d389406136d332ed4967ec56"},
+    {file = "certifi-2024.12.14.tar.gz", hash = "sha256:b650d30f370c2b724812bee08008be0c4163b163ddaec3f2546c1caf65f191db"},
 ]
 
 [[package]]
@@ -510,19 +510,19 @@ tornado = ["tornado (>=0.2)"]
 
 [[package]]
 name = "html-sanitizer"
-version = "2.4.4"
+version = "2.5.0"
 description = "HTML sanitizer"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "html_sanitizer-2.4.4-py3-none-any.whl", hash = "sha256:c4befe85456ce9967403e770b1e335fb1c0cd5334154df2782cb7e015e10b3b6"},
-    {file = "html_sanitizer-2.4.4.tar.gz", hash = "sha256:f718d3eb150a084d15c80d6546581fb08293ca96234242e9138bf0467cbd5792"},
+    {file = "html_sanitizer-2.5.0-py3-none-any.whl", hash = "sha256:34f24316ebce9f4f3488e7e24de09ae85aff3045448fb00ebc36a464190af8ce"},
+    {file = "html_sanitizer-2.5.0.tar.gz", hash = "sha256:8878c2383070e8a5023814d621e4133d15f8c013ec9a5619be280739d56d6ec5"},
 ]
 
 [package.dependencies]
 beautifulsoup4 = "*"
 lxml = ">=5.2"
-lxml-html-clean = ">=0.1"
+lxml-html-clean = ">=0.4"
 
 [[package]]
 name = "hupper"
@@ -1133,13 +1133,13 @@ with-vulture = ["vulture (>=1.5)"]
 
 [[package]]
 name = "prospector-profile-duplicated"
-version = "1.8.0"
+version = "1.10.0"
 description = "Profile that can be used to disable the duplicated or conflict rules between Prospector and other tools"
 optional = false
 python-versions = "*"
 files = [
-    {file = "prospector_profile_duplicated-1.8.0-py2.py3-none-any.whl", hash = "sha256:c36ca647848739e1ca52cf220b00ba1fbdf7105217d5534a5bf2e65279ad6011"},
-    {file = "prospector_profile_duplicated-1.8.0.tar.gz", hash = "sha256:1565109b016fac05c61dbce38b952bfce3ff054d0c5493d1acad1fc8e9909704"},
+    {file = "prospector_profile_duplicated-1.10.0-py2.py3-none-any.whl", hash = "sha256:1ab48125d90834cab9c65bb0cecf33e53c3b196b9c3dad2e917fda8acedb3916"},
+    {file = "prospector_profile_duplicated-1.10.0.tar.gz", hash = "sha256:1164697b6898d485d660b2d4133ff13548375bc9722abd324d0dd87fcc4b0a64"},
 ]
 
 [[package]]
@@ -2165,4 +2165,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "033b0936eceffd3c3752612ed343307f24ee573c77358df840de544819f27f0c"
+content-hash = "e5493e91a5d97732ad18e9813577abb08c1b0a1e6ece347e2c6b5a69c2a0a556"
