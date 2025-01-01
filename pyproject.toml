@@ -19,7 +19,7 @@ html-sanitizer = "2.4.4"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
-pytest = "8.3.3"
+pytest = "8.3.4"
 
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
