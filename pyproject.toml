@@ -40,7 +40,7 @@ main = "redirect:main"
 
 
 [tool.poetry.group.dev.dependencies]
-prospector-profile-duplicated = "1.8.0"
+prospector-profile-duplicated = "1.8.1"
 
 
 [tool.poetry-dynamic-versioning]
