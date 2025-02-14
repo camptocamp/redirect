@@ -22,9 +22,6 @@ repos:
     rev: 1.2.1
     hooks:
       - id: copyright
-      - id: poetry-check
-        additional_dependencies:
-          - poetry==2.0.1 # pypi
       - id: poetry-lock
         additional_dependencies:
           - poetry==2.0.1 # pypi
@@ -54,37 +51,47 @@ repos:
         args:
           - --builtin-schema
           - github-workflows-require-timeout
-      - id: check-renovate
-        additional_dependencies:
-          - pyjson5==1.6.8 # pypi
   - repo: https://github.com/sirwart/ripsecrets
     rev: v0.1.8
     hooks:
       - id: ripsecrets
-  - repo: https://github.com/PyCQA/autoflake
-    rev: v2.3.1
-    hooks:
-      - id: autoflake
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.1
-    hooks:
-      - id: pyupgrade
-        args:
-          - --py39-plus
-  - repo: https://github.com/PyCQA/isort
-    rev: 6.0.0
-    hooks:
-      - id: isort
-  - repo: https://github.com/psf/black
-    rev: 25.1.0
-    hooks:
-      - id: black
   - repo: https://github.com/sbrunner/jsonschema-validator
     rev: 1.0.0
     hooks:
       - id: jsonschema-validator
-        files: ^ci/config\.yaml$
+        files: ^\.github/publish\.yaml$
   - repo: https://github.com/renovatebot/pre-commit-hooks
     rev: 39.156.0
     hooks:
       - id: renovate-config-validator
+  - repo: https://github.com/PyCQA/prospector
+    rev: v1.14.1
+    hooks:
+      - id: prospector
+        args:
+          - --tool=ruff
+          - --die-on-tool-error
+          - --output-format=pylint
+          - --profile=.prospector.yaml
+          - --profile=utils:autofix
+        additional_dependencies:
+          - prospector-profile-duplicated==1.10.4 # pypi
+          - prospector-profile-utils==1.20.2 # pypi
+          - ruff==0.9.6 # pypi
+      - id: prospector
+        args:
+          - --die-on-tool-error
+          - --output-format=pylint
+          - --profile=utils:tests
+          - --profile=utils:autofix
+        additional_dependencies:
+          - prospector-profile-utils==1.20.2 # pypi
+          - ruff==0.9.6 # pypi
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.6
+    hooks:
+      - id: ruff-format
+  - repo: https://github.com/sbrunner/python-versions-hook
+    rev: 0.8.0
+    hooks:
+      - id: python-versions

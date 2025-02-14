@@ -1,26 +1,15 @@
-[tool.black]
-line-length = 110
-target-version = ["py312"]
-
-[tool.isort]
-line_length = 110
-profile = "black"
-
-[tool.mypy]
-python_version = "3.12"
-pretty = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-strict_optional = true
-strict = true
-
 [tool.poetry]
 name = "redirect"
 version = "0.0.0"
 description = "Not used"
 authors = []
+classifiers = [
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
@@ -31,16 +20,15 @@ pyramid-mako = "1.1.0"
 certifi = "2025.1.31"
 html-sanitizer = "2.5.0"
 
-[tool.poetry.dev-dependencies]
-prospector = { version = "1.14.1", extras = ["with_bandit", "with_mypy"] }
-pytest = "8.3.4"
-
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
 
 
 [tool.poetry.group.dev.dependencies]
 prospector-profile-duplicated = "1.10.4"
+prospector = { version = "1.14.1", extras = ["with_bandit", "with_mypy", "with_ruff", "with_pyroma"] }
+pytest = "8.3.4"
+prospector-profile-utils = "1.20.2"
 
 
 [tool.poetry-dynamic-versioning]
@@ -48,8 +36,10 @@ enable = true
 vcs = "git"
 pattern = "^(?P<base>\\d+(\\.\\d+)*)"
 format-jinja = """
-{%- if env.get("VERSION_TYPE") == "version_branch" -%}
-{{serialize_pep440(bump_version(base, 1 if env.get("IS_MASTER") == "TRUE" else 2), dev=distance)}}
+{%- if env.get("VERSION_TYPE") == "default_branch" -%}
+{{serialize_pep440(bump_version(base, 1), dev=distance)}}
+{%- elif env.get("VERSION_TYPE") == "stabilization_branch" -%}
+{{serialize_pep440(bump_version(base, 2), dev=distance)}}
 {%- elif distance == 0 -%}
 {{serialize_pep440(base)}}
 {%- else -%}
@@ -59,6 +49,13 @@ format-jinja = """
 
 [tool.poetry-plugin-tweak-dependencies-version]
 default = "present"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 110
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning", "poetry-plugin-tweak-dependencies-version", "poetry-plugin-drop-python-upper-constraint"]
 build-backend = "poetry.core.masonry.api"
