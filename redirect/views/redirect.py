@@ -26,12 +26,13 @@ sanitizer = html_sanitizer.Sanitizer(
         "empty": set(),
         "separate": set(),
         "keep_typographic_whitespace": True,
-    }
+    },
 )
 
 
-@redirect_service.get()
+@redirect_service.get()  # type: ignore[misc]
 def redirect_get(request: pyramid.request.Request) -> Any:
+    """Redirect to the URL specified in the 'came_from' parameter."""
     if param_name not in request.GET:
         message = [f"Missing &#x27;{param_name}&#x27; parameter", ""]
         for key, value in request.GET.items():
@@ -50,15 +51,16 @@ def redirect_get(request: pyramid.request.Request) -> Any:
                     "<br/>\n".join(message),
                     " </body>",
                     "</html>",
-                )
-            )
+                ),
+            ),
         )
 
     parsed_url = urllib.parse.urlparse(request.GET[param_name])
     allowed_hosts = get_allowed_hosts()
     if parsed_url.hostname not in allowed_hosts:
         _LOG.error("Host '%s' is not in: %s", parsed_url.hostname, ", ".join(allowed_hosts))
-        raise HTTPBadRequest(f"Host '{parsed_url.hostname}' is not allowed")
+        msg = f"Host '{parsed_url.hostname}' is not allowed"
+        raise HTTPBadRequest(msg)
 
     query = dict(request.GET)
     url_split = urllib.parse.urlsplit(query[param_name])
@@ -73,6 +75,6 @@ def redirect_get(request: pyramid.request.Request) -> Any:
                 url_split.path,
                 urllib.parse.urlencode(new_query),
                 url_split.fragment,
-            )
-        )
+            ),
+        ),
     )

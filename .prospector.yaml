@@ -1,17 +1,19 @@
 inherits:
   - duplicated
 
-strictness: veryhigh
-max-line-length: 110
-
+  - utils:base
+  - utils:fix
 ignore-paths:
   - gunicorn.conf.py
 
 #mypy:
 #  run: true
 
-bandit:
-  run: true
-
 pyorama:
   run: true
+mypy:
+  options:
+    python-version: '3.10'
+ruff:
+  options:
+    target-version: py310
