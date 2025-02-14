@@ -26,7 +26,7 @@ sanitizer = html_sanitizer.Sanitizer(
         "empty": set(),
         "separate": set(),
         "keep_typographic_whitespace": True,
-    }
+    },
 )
 
 
@@ -50,8 +50,8 @@ def redirect_get(request: pyramid.request.Request) -> Any:
                     "<br/>\n".join(message),
                     " </body>",
                     "</html>",
-                )
-            )
+                ),
+            ),
         )
 
     parsed_url = urllib.parse.urlparse(request.GET[param_name])
@@ -73,6 +73,6 @@ def redirect_get(request: pyramid.request.Request) -> Any:
                 url_split.path,
                 urllib.parse.urlencode(new_query),
                 url_split.fragment,
-            )
-        )
+            ),
+        ),
     )

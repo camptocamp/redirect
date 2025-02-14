@@ -32,7 +32,7 @@ def get_allowed_hosts() -> set[str]:
     global _ALLOWED_HOSTS_TIMESTAMP  # pylint: disable=global-statement
 
     config_filename = os.environ.get("REDIRECT_HOSTS", "/etc/redirect/hosts.yaml")
-    if _ALLOWED_HOSTS_TIMESTAMP < os.stat(config_filename).st_mtime:
+    if os.stat(config_filename).st_mtime > _ALLOWED_HOSTS_TIMESTAMP:
         with open(config_filename, encoding="utf-8") as config_file:
             hosts_config = yaml.load(config_file, Loader=yaml.SafeLoader)
             _ALLOWED_HOSTS.clear()
