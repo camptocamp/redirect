@@ -27,9 +27,9 @@ main = "redirect:main"
 
 [tool.poetry.group.dev.dependencies]
 prospector-profile-duplicated = "1.10.4"
-prospector = { version = "1.15.1", extras = ["with_bandit", "with_mypy", "with_ruff", "with_pyroma"] }
+prospector = { version = "1.15.2", extras = ["with_bandit", "with_mypy", "with_ruff", "with_pyroma"] }
 pytest = "8.3.4"
-prospector-profile-utils = "1.21.6"
+prospector-profile-utils = "1.21.7"
 
 
 [tool.poetry-dynamic-versioning]
