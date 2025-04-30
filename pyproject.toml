@@ -26,7 +26,7 @@ c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.1.7"
 pyramid-mako = "1.1.0"
 certifi = "2025.4.26"
 html-sanitizer = "2.5.0"
-types-pyyaml = "6.0.12.20250326"
+types-pyyaml = "6.0.12.20250402"
 
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
