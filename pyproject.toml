@@ -59,6 +59,7 @@ dynamic = ["dependencies", "version"]
 name = "redirect"
 description = "Not used"
 requires-python = ">=3.10"
+dependencies = ["gunicorn", "pyramid", "c2cwsgiutils[broadcast,oauth2,standard]", "pyramid-mako", "certifi", "html-sanitizer", "types-pyyaml"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning", "poetry-plugin-tweak-dependencies-version"]
