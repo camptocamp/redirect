@@ -9,7 +9,7 @@ convention = "numpy"
 version = "0.0.0"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.10,<3.14"
 gunicorn = "23.0.0"
 pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.1.7" }
@@ -59,6 +59,7 @@ dynamic = ["dependencies", "version"]
 name = "redirect"
 description = "Not used"
 requires-python = ">=3.10"
+dependencies = ["gunicorn", "pyramid", "c2cwsgiutils[broadcast,oauth2,standard]", "pyramid-mako", "certifi", "html-sanitizer", "types-pyyaml"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning", "poetry-plugin-tweak-dependencies-version"]
