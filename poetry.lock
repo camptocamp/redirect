@@ -546,14 +546,14 @@ tornado = ["tornado (>=0.2)"]
 
 [[package]]
 name = "html-sanitizer"
-version = "2.5.0"
+version = "2.6.0"
 description = "HTML sanitizer"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "html_sanitizer-2.5.0-py3-none-any.whl", hash = "sha256:34f24316ebce9f4f3488e7e24de09ae85aff3045448fb00ebc36a464190af8ce"},
-    {file = "html_sanitizer-2.5.0.tar.gz", hash = "sha256:8878c2383070e8a5023814d621e4133d15f8c013ec9a5619be280739d56d6ec5"},
+    {file = "html_sanitizer-2.6.0-py3-none-any.whl", hash = "sha256:44c8ef924358a092f13d7c63f6385b05994e5a328b0f11d1db421d88980b7c3f"},
+    {file = "html_sanitizer-2.6.0.tar.gz", hash = "sha256:e20bbc92df161d16c04aace70b2f69f482bd1e60d40aaa8b3209a2aeb94cd524"},
 ]
 
 [package.dependencies]
@@ -1552,26 +1552,27 @@ test = ["setuptools (>=60)", "zest.releaser[recommended]"]
 
 [[package]]
 name = "pytest"
-version = "8.3.5"
+version = "8.4.1"
 description = "pytest: simple powerful testing with Python"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "pytest-8.3.5-py3-none-any.whl", hash = "sha256:c69214aa47deac29fad6c2a4f590b9c4a9fdb16a403176fe154b79c0b4d4d820"},
-    {file = "pytest-8.3.5.tar.gz", hash = "sha256:f4efe70cc14e511565ac476b57c279e12a855b11f48f212af1080ef2263d3845"},
+    {file = "pytest-8.4.1-py3-none-any.whl", hash = "sha256:539c70ba6fcead8e78eebbf1115e8b589e7565830d7d006a8723f19ac8a0afb7"},
+    {file = "pytest-8.4.1.tar.gz", hash = "sha256:7c67fd69174877359ed9371ec3af8a3d2b04741818c51e5e99cc1742251fa93c"},
 ]
 
 [package.dependencies]
-colorama = {version = "*", markers = "sys_platform == \"win32\""}
-exceptiongroup = {version = ">=1.0.0rc8", markers = "python_version < \"3.11\""}
-iniconfig = "*"
-packaging = "*"
+colorama = {version = ">=0.4", markers = "sys_platform == \"win32\""}
+exceptiongroup = {version = ">=1", markers = "python_version < \"3.11\""}
+iniconfig = ">=1"
+packaging = ">=20"
 pluggy = ">=1.5,<2"
+pygments = ">=2.7.2"
 tomli = {version = ">=1", markers = "python_version < \"3.11\""}
 
 [package.extras]
-dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
+dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests", "setuptools", "xmlschema"]
 
 [[package]]
 name = "pyyaml"
@@ -2442,4 +2443,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.14"
-content-hash = "458617afa276249f581a8a20888be211d881420f801516d71d8f87cd8c27d218"
+content-hash = "3d7c828f94c98a23b502b82c597a4cfeba1b47c94c880aabb86d16e67f8a6cdb"
