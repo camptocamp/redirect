@@ -14,7 +14,7 @@ gunicorn = "22.0.0"
 pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast"], version = "5.1.9" }
 pyramid-mako = "1.1.0"
-certifi = "2025.7.9"
+certifi = "2025.7.14"
 sentry-sdk = "2.8.0"
 redis = "4.4.4"
 requests = "2.32.4"
