@@ -62,7 +62,7 @@ def test_wrong():
 def test_error():
     response = requests.get("http://redirect:8080/", params={"error": "An error."}, allow_redirects=False)
     assert response.status_code == 400, response.text
-    assert response.text == "\n".join(
+    assert response.text == "\n".join(  # noqa: FLY002
         (
             "<html>",
             " <head>",

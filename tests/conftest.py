@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 import pytest
 import transaction
@@ -16,7 +16,7 @@ def pytest_addoption(parser):
 @pytest.fixture(scope="session")
 def ini_file(request):
     # potentially grab this path from a pytest option
-    return os.path.abspath(request.config.option.ini or "testing.ini")
+    return str(Path(request.config.option.ini or "testing.ini").resolve())
 
 
 @pytest.fixture(scope="session")
