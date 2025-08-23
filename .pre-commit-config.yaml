@@ -19,7 +19,7 @@ repos:
       - id: trailing-whitespace
       - id: mixed-line-ending
   - repo: https://github.com/sbrunner/hooks
-    rev: 1.6.0
+    rev: 1.6.1
     hooks:
       - id: copyright
       - id: poetry2-lock
@@ -29,7 +29,7 @@ repos:
       - id: prospector-to-ruff
         additional_dependencies:
           - prospector-profile-duplicated==1.10.5 # pypi
-          - prospector-profile-utils==1.26.1 # pypi
+          - prospector-profile-utils==1.26.3 # pypi
         args:
           - --test=utils:tests
   - repo: https://github.com/codespell-project/codespell
