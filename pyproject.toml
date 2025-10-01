@@ -27,7 +27,7 @@ c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.1.8"
 pyramid-mako = "1.1.0"
 certifi = "2025.8.3"
 html-sanitizer = "2.6.0"
-types-pyyaml = "6.0.12.20250516"
+types-pyyaml = "6.0.12.20250915"
 
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
@@ -35,7 +35,7 @@ main = "redirect:main"
 [tool.poetry.group.dev.dependencies]
 prospector-profile-duplicated = "1.10.5"
 prospector = { version = "1.17.3", extras = ["with_bandit", "with_mypy", "with_ruff", "with_pyroma"] }
-pytest = "8.4.1"
+pytest = "8.4.2"
 prospector-profile-utils = "1.26.5"
 
 [tool.poetry-dynamic-versioning]
