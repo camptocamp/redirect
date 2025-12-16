@@ -30,7 +30,7 @@ sanitizer = html_sanitizer.Sanitizer(
 )
 
 
-@redirect_service.get()  # type: ignore[misc]
+@redirect_service.get()  # type: ignore[untyped-decorator]
 def redirect_get(request: pyramid.request.Request) -> Any:
     """Redirect to the URL specified in the 'came_from' parameter."""
     if param_name not in request.GET:
