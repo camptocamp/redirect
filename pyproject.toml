@@ -21,7 +21,7 @@ version = "0.0.0"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.14"
-gunicorn = "23.0.0"
+gunicorn = "24.1.1"
 pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.1.9" }
 pyramid-mako = "1.1.0"
