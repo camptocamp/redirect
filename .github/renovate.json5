@@ -1,38 +1,38 @@
 {
-  extends: [
-    'github>camptocamp/gs-renovate-config-preset:base.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:group.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:ci.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:preset.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:pre-commit.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:python.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:docker.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:json-schema.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:shellcheck.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:stabilization-branches.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:own.json5#1.8.5',
-    'github>camptocamp/gs-renovate-config-preset:security.json5#1.8.5',
+  "extends": [
+    "github>camptocamp/gs-renovate-config-preset:base.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:group.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:ci.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:preset.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:pre-commit.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:python.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:docker.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:json-schema.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:shellcheck.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:stabilization-branches.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:own.json5#1.8.5",
+    "github>camptocamp/gs-renovate-config-preset:security.json5#1.8.5",
   ],
-  baseBranchPatterns: ['1.1', 'master'],
+  baseBranchPatterns: ["master", "1.1"],
   packageRules: [
     /** Docker images versions */
     {
-      matchDatasources: ['docker'],
-      versioning: 'ubuntu',
-      allowedVersions: '/^[0-9][02468]\\.04$/',
-      matchDepNames: ['ubuntu'],
+      matchDatasources: ["docker"],
+      versioning: "ubuntu",
+      allowedVersions: "/^[0-9][02468]\\.04$/",
+      matchDepNames: ["ubuntu"],
     },
     /** Disable upgrading the supported Python version */
     {
-      matchFileNames: ['pyproject.toml'],
+      matchFileNames: ["pyproject.toml"],
       enabled: false,
-      matchDepNames: ['python'],
+      matchDepNames: ["python"],
     },
     /** Packages published very recently are not pushed to stabilization branches for security reasons */
     {
-      matchBaseBranches: ['/^[0-9]+\\.[0-9]+$/'],
-      minimumReleaseAge: '7 days',
+      matchBaseBranches: ["/^[0-9]+\\.[0-9]+$/"],
+      minimumReleaseAge: "7 days",
     },
   ],
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
 }
