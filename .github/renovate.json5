@@ -33,6 +33,12 @@
       matchBaseBranches: ['/^[0-9]+\\.[0-9]+$/'],
       minimumReleaseAge: '7 days',
     },
+    /** Keep setuptools below 81.0.0 for pyramid */
+    {
+      enabled: false,
+      matchDepNames: ['setuptools'],
+      allowedVersions: '<81.0.0',
+    },
   ],
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
 }
