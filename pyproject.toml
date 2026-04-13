@@ -21,7 +21,7 @@ urllib3 = "2.6.3"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
-pytest = "8.3.5"
+pytest = "9.0.3"
 
 [tool.poetry.plugins."paste.app_factory"]
 main = "redirect:main"
