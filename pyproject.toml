@@ -1,3 +1,22 @@
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+classifiers = [
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+    'Programming Language :: Python :: 3.13',
+]
+dynamic = ["dependencies", "version"]
+name = "redirect"
+description = "Not used"
+requires-python = ">=3.10"
+dependencies = ["gunicorn", "pyramid", "c2cwsgiutils[broadcast,oauth2,standard]", "pyramid-mako", "certifi", "html-sanitizer", "types-pyyaml", "setuptools"]
+
 [tool.ruff]
 target-version = "py310"
 line-length = 110
@@ -57,22 +76,3 @@ format-jinja = """
 
 [tool.poetry-plugin-tweak-dependencies-version]
 default = "present"
-
-[project]
-classifiers = [
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.10',
-    'Programming Language :: Python :: 3.11',
-    'Programming Language :: Python :: 3.12',
-    'Programming Language :: Python :: 3.13',
-]
-dynamic = ["dependencies", "version"]
-name = "redirect"
-description = "Not used"
-requires-python = ">=3.10"
-dependencies = ["gunicorn", "pyramid", "c2cwsgiutils[broadcast,oauth2,standard]", "pyramid-mako", "certifi", "html-sanitizer", "types-pyyaml", "setuptools"]
-
-[build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
-build-backend = "poetry.core.masonry.api"
