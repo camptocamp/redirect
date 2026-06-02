@@ -51,7 +51,7 @@ camptocamp/redirect:latest:
   ubuntu_22_04/libkrb5-3: 1.19.2-2ubuntu0.7
   ubuntu_22_04/libkrb5support0: 1.19.2-2ubuntu0.7
   ubuntu_22_04/liblz4-1: 1.9.3-2build2
-  ubuntu_22_04/liblzma5: 5.2.5-2ubuntu1
+  ubuntu_22_04/liblzma5: 5.2.5-2ubuntu1.1
   ubuntu_22_04/libmount1: 2.37.2-4ubuntu3.5
   ubuntu_22_04/libmpdec3: 2.5.1-2build2
   ubuntu_22_04/libncurses6: 6.3-2ubuntu0.1
