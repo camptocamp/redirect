@@ -44,7 +44,7 @@ gunicorn = "26.0.0"
 pyramid = "2.1"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.1.9" }
 pyramid-mako = "1.1.0"
-certifi = "2026.5.20"
+certifi = "2026.6.17"
 html-sanitizer = "2.6.0"
 setuptools = "80.9.0"
 
