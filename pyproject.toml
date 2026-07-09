@@ -26,6 +26,7 @@ pillow = "12.3.0"
 pyjwt = "2.13.0"
 ujson = "5.13.0"
 webob = "1.8.10"
+soupsieve = "2.8.4"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
