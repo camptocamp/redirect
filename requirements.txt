@@ -4,3 +4,4 @@ poetry-plugin-export==1.8.0
 requests>=2.32.4 # not directly required, pinned by Snyk to avoid a vulnerability
 urllib3>=2.6.3 # not directly required, pinned by Snyk to avoid a vulnerability
 virtualenv>=20.26.6 # not directly required, pinned by Snyk to avoid a vulnerability
+cryptography>=48.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
