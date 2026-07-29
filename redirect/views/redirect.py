@@ -1,21 +1,19 @@
+"""Redirect view for FastAPI."""
+
 import logging
-import os
 import urllib
 from typing import Any
 
 import html_sanitizer
-import pyramid.request
-from cornice import Service
-from pyramid.httpexceptions import HTTPBadRequest, HTTPFound
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
 
-from redirect import get_allowed_hosts
+from redirect.hosts import get_allowed_hosts
+from redirect.settings import settings
 
 _LOG = logging.getLogger(__name__)
 
-param_name = os.environ.get("REDIRECT_PARAM", "came_from")
-
-redirect_service = Service(name="redirect", description="The redirect service", path="/")
-
+router = APIRouter()
 
 sanitizer = html_sanitizer.Sanitizer(
     {
@@ -30,15 +28,18 @@ sanitizer = html_sanitizer.Sanitizer(
 )
 
 
-@redirect_service.get()  # type: ignore[untyped-decorator]
-def redirect_get(request: pyramid.request.Request) -> Any:
+@router.get("/")
+async def redirect_get(request: Request) -> Any:
     """Redirect to the URL specified in the 'came_from' parameter."""
-    if param_name not in request.GET:
+    param_name = settings.redirect_param
+    params = dict(request.query_params)
+    if param_name not in params:
         message = [f"Missing &#x27;{param_name}&#x27; parameter", ""]
-        for key, value in request.GET.items():
+        for key, value in params.items():
             message.append(f"{sanitizer.sanitize(key)}: {sanitizer.sanitize(value)}")
-        raise HTTPBadRequest(
-            body="\n".join(
+        return HTMLResponse(
+            status_code=400,
+            content="\n".join(
                 (
                     "<html>",
                     " <head>",
@@ -55,20 +56,21 @@ def redirect_get(request: pyramid.request.Request) -> Any:
             ),
         )
 
-    parsed_url = urllib.parse.urlparse(request.GET[param_name])
-    allowed_hosts = get_allowed_hosts()
+    parsed_url = urllib.parse.urlparse(params[param_name])
+    allowed_hosts = await get_allowed_hosts()
     if parsed_url.hostname not in allowed_hosts:
         _LOG.error("Host '%s' is not in: %s", parsed_url.hostname, ", ".join(allowed_hosts))
         msg = f"Host '{parsed_url.hostname}' is not allowed"
-        raise HTTPBadRequest(msg)
+        raise HTTPException(status_code=400, detail=msg)
 
-    query = dict(request.GET)
+    query = dict(params)
     url_split = urllib.parse.urlsplit(query[param_name])
     new_query = dict(urllib.parse.parse_qsl(url_split.query))
     del query[param_name]
     new_query.update(query)
-    raise HTTPFound(
-        urllib.parse.urlunsplit(
+    return RedirectResponse(
+        status_code=302,
+        url=urllib.parse.urlunsplit(
             (
                 url_split.scheme,
                 url_split.netloc,

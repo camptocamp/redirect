@@ -1,66 +1,67 @@
-import requests
+import pytest
 
 
-def test_test1():
-    response = requests.get(
-        "http://redirect:8080/",
+@pytest.mark.anyio
+async def test_test1(client):
+    response = await client.get(
+        "/",
         params={"came_from": "http://example1.com/toto"},
-        allow_redirects=False,
     )
     assert response.status_code == 302, response.text
-    assert response.headers["Location"] == "http://example1.com/toto"
+    assert response.headers["location"] == "http://example1.com/toto"
 
 
-def test_test2():
-    response = requests.get(
-        "http://redirect:8080/",
+@pytest.mark.anyio
+async def test_test2(client):
+    response = await client.get(
+        "/",
         params={"came_from": "http://example2.com/toto"},
-        allow_redirects=False,
     )
     assert response.status_code == 302, response.text
-    assert response.headers["Location"] == "http://example2.com/toto"
+    assert response.headers["location"] == "http://example2.com/toto"
 
 
-def test_params():
-    response = requests.get(
-        "http://redirect:8080/",
+@pytest.mark.anyio
+async def test_params(client):
+    response = await client.get(
+        "/",
         params={"came_from": "http://example2.com/toto?p1=1", "p2": "2"},
-        allow_redirects=False,
     )
     assert response.status_code == 302, response.text
-    assert response.headers["Location"] == "http://example2.com/toto?p1=1&p2=2"
+    assert response.headers["location"] == "http://example2.com/toto?p1=1&p2=2"
 
 
-def test_params_same():
-    response = requests.get(
-        "http://redirect:8080/",
+@pytest.mark.anyio
+async def test_params_same(client):
+    response = await client.get(
+        "/",
         params={"came_from": "http://example2.com/toto?p1=1", "p1": "2"},
-        allow_redirects=False,
     )
     assert response.status_code == 302, response.text
-    assert response.headers["Location"] == "http://example2.com/toto?p1=2"
+    assert response.headers["location"] == "http://example2.com/toto?p1=2"
 
 
-def test_test_other():
-    response = requests.get(
-        "http://redirect:8080/",
+@pytest.mark.anyio
+async def test_test_other(client):
+    response = await client.get(
+        "/",
         params={"came_from": "http://example3.com/toto"},
-        allow_redirects=False,
     )
     assert response.status_code == 400, response.text
 
 
-def test_wrong():
-    response = requests.get(
-        "http://redirect:8080/",
+@pytest.mark.anyio
+async def test_wrong(client):
+    response = await client.get(
+        "/",
         params={"came_from2": "http://example2.com/toto"},
-        allow_redirects=False,
     )
     assert response.status_code == 400, response.text
 
 
-def test_error():
-    response = requests.get("http://redirect:8080/", params={"error": "An error."}, allow_redirects=False)
+@pytest.mark.anyio
+async def test_error(client):
+    response = await client.get("/", params={"error": "An error."})
     assert response.status_code == 400, response.text
     assert response.text == "\n".join(  # noqa: FLY002
         (
@@ -80,11 +81,11 @@ def test_error():
     )
 
 
-def test_querystring():
-    response = requests.get(
-        "http://redirect:8080/",
+@pytest.mark.anyio
+async def test_querystring(client):
+    response = await client.get(
+        "/",
         params={"came_from": "http://example2.com/toto", "test": "toto"},
-        allow_redirects=False,
     )
     assert response.status_code == 302, response.text
-    assert response.headers["Location"] == "http://example2.com/toto?test=toto"
+    assert response.headers["location"] == "http://example2.com/toto?test=toto"

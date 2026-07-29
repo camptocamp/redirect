@@ -70,20 +70,7 @@ RUN --mount=type=cache,target=/root/.cache \
     && python3 -m compileall -q /app/redirect
 COPY . ./
 
-CMD [ "/venv/bin/gunicorn", "--paste=production.ini" ]
+CMD [ "/venv/bin/uvicorn", "redirect:app", "--host=0.0.0.0", "--port=8080" ]
 
 ARG GIT_HASH
 ENV GIT_HASH=${GIT_HASH}
-
-RUN c2cwsgiutils-genversion ${GIT_HASH}
-
-# Default values for the environment variables
-ENV \
-    DEVELOPMENT=0 \
-    LOG_TYPE=console \
-    OTHER_LOG_LEVEL=WARNING \
-    GUNICORN_LOG_LEVEL=WARNING \
-    GUNICORN_ACCESS_LOG_LEVEL=INFO \
-    C2CWSGIUTILS_LOG_LEVEL=WARNING \
-    VISIBLE_ENTRY_POINT=/ \
-    LOG_LEVEL=INFO
