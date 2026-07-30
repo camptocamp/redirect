@@ -381,14 +381,14 @@ virtualenv = ["virtualenv (>=20.17) ; python_version >= \"3.10\" and python_vers
 
 [[package]]
 name = "c2casgiutils"
-version = "0.13.3"
+version = "0.13.4"
 description = "Common utilities for Camptocamp ASGI applications"
 optional = false
 python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "c2casgiutils-0.13.3-py3-none-any.whl", hash = "sha256:e5273007d944b01d3ba49b33a53a14eec45fdf6bfe91c3d283d2f16381123e3d"},
-    {file = "c2casgiutils-0.13.3.tar.gz", hash = "sha256:f51ad1d2aedc4c2ce40fe0c861e8b77a3d7cc9141e8c327c06b5c4b643657dc8"},
+    {file = "c2casgiutils-0.13.4-py3-none-any.whl", hash = "sha256:e8d8293d5c505dde484a80a460b0cb5ec5426762ce0f5e411c4af4545eec7650"},
+    {file = "c2casgiutils-0.13.4.tar.gz", hash = "sha256:8c63fc8325ccea3aff662bb77d2f3e54c33c441e0917c9fb52a074eb041409f8"},
 ]
 
 [package.dependencies]
@@ -399,6 +399,7 @@ prometheus-client = "*"
 prometheus-fastapi-instrumentator = "*"
 pydantic-settings = "*"
 pyjwt = "*"
+pyyaml = "*"
 redis = "*"
 sentry-sdk = {version = "*", extras = ["fastapi"]}
 
@@ -2381,7 +2382,7 @@ version = "6.0.3"
 description = "YAML parser and emitter for Python"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main", "dev"]
 files = [
     {file = "PyYAML-6.0.3-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:c2514fceb77bc5e7a2f7adfaa1feb2fb311607c9cb518dbc378688ec73d8292f"},
     {file = "PyYAML-6.0.3-cp38-cp38-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:9c57bb8c96f6d1808c030b1687b9b5fb476abaa47f0db9c0101f5e9f394e97f4"},
@@ -2969,4 +2970,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.14"
-content-hash = "99ada7e33c68489641c088b629cbbac13285a96342bcad0568e25447b9389594"
+content-hash = "4b05c2c3e4c8a6f15a3650b77769785a19b8d75412a27af3e21d54a211780d2b"
