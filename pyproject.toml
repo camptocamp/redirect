@@ -1,5 +1,5 @@
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 line-length = 110
 
 [tool.ruff.lint]
@@ -20,24 +20,27 @@ convention = "numpy"
 version = "0.0.0"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.14"
-gunicorn = "26.0.0"
-pyramid = "2.1"
-c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.1.9" }
-pyramid-mako = "1.1.0"
+python = ">=3.11,<3.14"
+fastapi = "0.140.13"
+uvicorn = "0.52.0"
+c2casgiutils = "0.13.1"
+pydantic-settings = "2.14.2"
 certifi = "2026.7.22"
 html-sanitizer = "2.6.0"
-setuptools = "80.9.0"
-
-[tool.poetry.plugins."paste.app_factory"]
-main = "redirect:main"
+prometheus-client = "0.26.0"
+prometheus-fastapi-instrumentator = "8.1.0"
+sentry-sdk = "2.66.1"
+anyio = "4.14.2"
+jinja2 = "3.1.6"
 
 [tool.poetry.group.dev.dependencies]
 prospector-profile-duplicated = "1.12.0"
 prospector = { version = "1.19.0", extras = ["with_bandit", "with_mypy", "with_ruff", "with_pyroma"] }
 pytest = "9.1.1"
+pytest-asyncio = "1.4.0"
 prospector-profile-utils = "1.27.0"
 types-pyyaml = "6.0.12.20260518"
+httpx = "0.28.1"
 
 [tool.poetry-dynamic-versioning]
 enable = true
@@ -62,7 +65,6 @@ default = "present"
 classifiers = [
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
     'Programming Language :: Python :: 3.12',
     'Programming Language :: Python :: 3.13',
@@ -70,8 +72,8 @@ classifiers = [
 dynamic = ["dependencies", "version"]
 name = "redirect"
 description = "Not used"
-requires-python = ">=3.10"
-dependencies = ["gunicorn", "pyramid", "c2cwsgiutils[broadcast,oauth2,standard]", "pyramid-mako", "certifi", "html-sanitizer", "types-pyyaml", "setuptools"]
+requires-python = ">=3.11"
+dependencies = ["fastapi", "uvicorn", "c2casgiutils", "pydantic-settings", "certifi", "html-sanitizer", "types-pyyaml==6.0.12.20260518", "prometheus-client", "prometheus-fastapi-instrumentator", "sentry-sdk", "anyio", "jinja2"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]

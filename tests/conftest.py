@@ -1,107 +1,23 @@
+import os
 from pathlib import Path
 
 import pytest
-import transaction
-from pyramid.paster import get_appsettings
-from pyramid.scripting import prepare
-from pyramid.testing import DummyRequest, testConfig
+from httpx import ASGITransport, AsyncClient
 
-from redirect import main
+os.environ["REDIRECT__REDIRECT_HOSTS"] = str(Path(__file__).parent / "hosts.yaml")
 
-
-def pytest_addoption(parser):
-    parser.addoption("--ini", action="store", metavar="INI_FILE")
+from redirect import app  # noqa: E402
 
 
 @pytest.fixture(scope="session")
-def ini_file(request):
-    # potentially grab this path from a pytest option
-    return str(Path(request.config.option.ini or "testing.ini").resolve())
+def anyio_backend():
+    return "asyncio"
 
 
 @pytest.fixture(scope="session")
-def app_settings(ini_file):
-    return get_appsettings(ini_file)
-
-
-@pytest.fixture(scope="session")
-def app(app_settings, dbengine):
-    return main({}, dbengine=dbengine, **app_settings)
-
-
-@pytest.fixture
-def tm():
-    tm = transaction.TransactionManager(explicit=True)
-    tm.begin()
-    tm.doom()
-
-    yield tm
-
-    tm.abort()
-
-
-# @pytest.fixture
-# def testapp(app, tm):
-#    testapp = webtest.TestApp(
-#        app,
-#        extra_environ={
-#            "HTTP_HOST": "example.com",
-#            "tm.active": True,
-#            "tm.manager": tm,
-#        },
-#    )
-#
-#    return testapp
-
-
-@pytest.fixture
-def app_request(app, tm):
-    """
-    A real request.
-
-    This request is almost identical to a real request but it has some
-    drawbacks in tests as it's harder to mock data and is heavier.
-
-    """
-    with prepare(registry=app.registry) as env:
-        request = env["request"]
-        request.host = "example.com"
-
-        # without this, request.dbsession will be joined to the same transaction
-        # manager but it will be using a different sqlalchemy.orm.Session using
-        # a separate database transaction
-        request.tm = tm
-
-        yield request
-
-
-@pytest.fixture
-def dummy_request(tm):
-    """
-    A lightweight dummy request.
-
-    This request is ultra-lightweight and should be used only when the request
-    itself is not a large focus in the call-stack.  It is much easier to mock
-    and control side-effects using this object, however:
-
-    - It does not have request extensions applied.
-    - Threadlocals are not properly pushed.
-
-    """
-    request = DummyRequest()
-    request.host = "example.com"
-    request.tm = tm
-
-    return request
-
-
-@pytest.fixture
-def dummy_config(dummy_request):
-    """
-    A dummy :class:`pyramid.config.Configurator` object.  This allows for
-    mock configuration, including configuration for ``dummy_request``, as well
-    as pushing the appropriate threadlocals.
-
-    """
-    with testConfig(request=dummy_request) as config:
-        yield config
+async def client():
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://redirect:8080",
+    ) as client:
+        yield client
