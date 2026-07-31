@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS base-all
+FROM ubuntu:26.04 AS base-all
 LABEL org.opencontainers.image.authors="Camptocamp <info@camptocamp.com>"
 SHELL ["/bin/bash", "-o", "pipefail", "-cux"]
 
@@ -59,6 +59,8 @@ COPY redirect/ ./redirect/
 RUN --mount=type=cache,target=/root/.cache \
     python3 -m pip install --disable-pip-version-check --no-deps --editable=.
 COPY . ./
+
+ENV PYTHON_COLORS=0
 
 FROM base AS runtime
 
