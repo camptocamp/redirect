@@ -1,3 +1,5 @@
+# Copyright (c) 2022-2026, Camptocamp SA
+
 import os
 from pathlib import Path
 

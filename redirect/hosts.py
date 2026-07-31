@@ -1,3 +1,5 @@
+# Copyright (c) 2022-2026, Camptocamp SA
+
 """Allowed hosts management."""
 
 import datetime

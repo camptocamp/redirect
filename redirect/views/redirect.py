@@ -1,3 +1,5 @@
+# Copyright (c) 2022-2026, Camptocamp SA
+
 """Redirect view for FastAPI."""
 
 import logging
@@ -47,8 +49,8 @@ async def redirect_get(request: Request) -> Any:
                     " </head>",
                     " <body>",
                     "  <h1>400 Bad Request</h1>",
-                    "  The server could not comply with the request since it is either "
-                    "malformed or otherwise incorrect.<br/><br/>",
+                    ("  The server could not comply with the request since it is either "
+                     "malformed or otherwise incorrect.<br/><br/>"),
                     "<br/>\n".join(message),
                     " </body>",
                     "</html>",
