@@ -60,6 +60,8 @@ RUN --mount=type=cache,target=/root/.cache \
     python3 -m pip install --disable-pip-version-check --no-deps --editable=.
 COPY . ./
 
+ENV PYTHON_COLORS=0
+
 FROM base AS runtime
 
 WORKDIR /app
