@@ -76,5 +76,5 @@ requires-python = ">=3.11"
 dependencies = ["fastapi", "uvicorn", "c2casgiutils", "pydantic-settings", "certifi", "html-sanitizer", "types-pyyaml==6.0.12.20260518", "prometheus-client", "prometheus-fastapi-instrumentator", "sentry-sdk", "anyio", "jinja2"]
 
 [build-system]
-requires = ["poetry-core==2.4.0", "poetry-dynamic-versioning==1.10.0"]
+requires = ["poetry-core==2.4.1", "poetry-dynamic-versioning==1.10.0"]
 build-backend = "poetry.core.masonry.api"
