@@ -20,6 +20,8 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
+from redirect.middleware import TrimResponseHeadersMiddleware
+
 from redirect.views.redirect import router
 
 _LOG = logging.getLogger(__name__)
@@ -103,6 +105,8 @@ if c2casgiutils.config.settings.proxy_headers.type != "none":
         trusted_hosts=c2casgiutils.config.settings.proxy_headers.trusted_hosts,
         headers_type=c2casgiutils.config.settings.proxy_headers.type,
     )
+
+app.add_middleware(TrimResponseHeadersMiddleware)
 
 
 @app.get(f"{route_prefix}c2c")
