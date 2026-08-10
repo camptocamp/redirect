@@ -2,8 +2,6 @@
 
 """Middleware that trims whitespace from response header values."""
 
-from collections.abc import Awaitable, Callable
-
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 
@@ -20,9 +18,7 @@ class TrimResponseHeadersMiddleware:
 
         async def send_wrapper(message: Message) -> None:
             if message["type"] == "http.response.start":
-                message["headers"] = [
-                    (name, value.strip()) for name, value in message.get("headers", [])
-                ]
+                message["headers"] = [(name, value.strip()) for name, value in message.get("headers", [])]
             await send(message)
 
         await self.app(scope, receive, send_wrapper)

@@ -21,7 +21,6 @@ from starlette.middleware.gzip import GZipMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from redirect.middleware import TrimResponseHeadersMiddleware
-
 from redirect.views.redirect import router
 
 _LOG = logging.getLogger(__name__)
