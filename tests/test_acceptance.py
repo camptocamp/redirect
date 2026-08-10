@@ -1,6 +1,29 @@
 # Copyright (c) 2022-2026, Camptocamp SA
 
 import pytest
+from httpx import ASGITransport, AsyncClient
+from starlette.applications import Starlette
+from starlette.responses import PlainTextResponse
+from starlette.routing import Route
+
+from redirect.middleware import TrimResponseHeadersMiddleware
+
+
+async def _dummy(request):
+    return PlainTextResponse("ok", headers={"x-test": "  value with spaces  "})
+
+
+@pytest.mark.anyio
+async def test_trim_response_headers():
+    app = Starlette(routes=[Route("/", _dummy)])
+    app.add_middleware(TrimResponseHeadersMiddleware)
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://testserver",
+    ) as client:
+        response = await client.get("/")
+        assert response.headers["x-test"] == "value with spaces"
 
 
 @pytest.mark.anyio

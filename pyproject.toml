@@ -61,6 +61,16 @@ format-jinja = """
 [tool.poetry-plugin-tweak-dependencies-version]
 default = "present"
 
+[tool.pytest.ini_options]
+addopts = "--strict-markers --asyncio-mode=auto"
+testpaths = [
+    "redirect",
+    "tests",
+]
+markers = [
+    "docker: Tests that require a running Docker container.",
+]
+
 [project]
 classifiers = [
     'Programming Language :: Python',
