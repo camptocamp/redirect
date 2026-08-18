@@ -75,4 +75,5 @@ COPY . ./
 CMD [ "/venv/bin/uvicorn", "redirect:app", "--host=0.0.0.0", "--port=8080" ]
 
 ARG GIT_HASH
-ENV GIT_HASH=${GIT_HASH}
+ENV GIT_HASH=${GIT_HASH} \
+    C2C__TOOLS__LOGGING__APPLICATION_MODULE=redirect
