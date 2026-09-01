@@ -41,7 +41,7 @@ pytest-asyncio = "1.4.0"
 prospector-profile-utils = "1.27.0"
 types-pyyaml = "6.0.12.20260518"
 httpx = "0.28.1"
-ruff = "0.16.1"
+ruff = "0.16.4"
 pylint = "4.0.7"
 
 [tool.poetry-dynamic-versioning]
