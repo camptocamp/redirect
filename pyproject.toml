@@ -27,6 +27,7 @@ pyjwt = "2.15.0"
 ujson = "5.13.0"
 webob = "1.8.11"
 soupsieve = "2.9"
+oauthlib = "4.0.0"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy"] }
