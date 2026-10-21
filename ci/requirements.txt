@@ -4,7 +4,7 @@ poetry-plugin-export==1.8.0
 tag-publish==1.2.6
 requests>=2.32.4 # not directly required, pinned by Snyk to avoid a vulnerability
 urllib3>=2.8.0 # not directly required, pinned by Snyk to avoid a vulnerability
-virtualenv==21.7.13 # not directly required, pinned by Snyk to avoid a vulnerability
+virtualenv==21.14.7 # not directly required, pinned by Snyk to avoid a vulnerability
 poetry>=2.3.3 # not directly required, pinned by Snyk to avoid a vulnerability
 black>=26.3.1 # not directly required, pinned by Snyk to avoid a vulnerability
 pip>=26.2 # not directly required, pinned by Snyk to avoid a vulnerability
