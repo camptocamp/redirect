@@ -37,7 +37,7 @@ jobs:
           python-version: '3.11'
 
       - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
-      - run: python3 -m pip install --user '--only-binary=:all:' --requirement=ci/requirements.txt
+      - run: python3 -m pip install --user '--only-binary=:all:' --no-binary=markdown-table --requirement=ci/requirements.txt
 
       - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
