@@ -2,7 +2,7 @@
 
 """Allowed hosts management."""
 
-import datetime
+import datetime as dt
 import logging
 from typing import Any
 
@@ -33,12 +33,12 @@ async def get_allowed_hosts() -> set[str]:
     else:
         _LOG.debug(
             "No new host file, current date: %s, file date: %s",
-            datetime.datetime.fromtimestamp(_ALLOWED_HOSTS_TIMESTAMP, tz=datetime.UTC).strftime(
+            dt.datetime.fromtimestamp(_ALLOWED_HOSTS_TIMESTAMP, tz=dt.UTC).strftime(
                 "%d.%m.%Y %H:%M:%S",
             ),
-            datetime.datetime.fromtimestamp(
+            dt.datetime.fromtimestamp(
                 stat_result.st_mtime,
-                tz=datetime.UTC,
+                tz=dt.UTC,
             ).strftime("%d.%m.%Y %H:%M:%S"),
         )
     return set(_ALLOWED_HOSTS)
