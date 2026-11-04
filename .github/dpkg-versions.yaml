@@ -63,7 +63,7 @@ camptocamp/redirect:latest:
   ubuntu_22_04/libpam-modules-bin: 1.4.0-11ubuntu2.8
   ubuntu_22_04/libpam-runtime: 1.4.0-11ubuntu2.8
   ubuntu_22_04/libpam0g: 1.4.0-11ubuntu2.8
-  ubuntu_22_04/libpcre2-8-0: 10.39-3ubuntu0.1
+  ubuntu_22_04/libpcre2-8-0: 10.39-3ubuntu0.2
   ubuntu_22_04/libpcre3: 2:8.39-13ubuntu0.22.04.1
   ubuntu_22_04/libprocps8: 2:3.3.17-6ubuntu2.1
   ubuntu_22_04/libpython3-stdlib: 3.10.6-1~22.04.1
