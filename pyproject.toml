@@ -10,7 +10,7 @@ authors = []
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
-gunicorn = "23.0.0"
+gunicorn = "27.0.0"
 pyramid = "2.0.2"
 c2cwsgiutils = { extras = ["standard", "broadcast", "oauth2"], version = "6.0.9" }
 pyramid-mako = "1.1.0"
